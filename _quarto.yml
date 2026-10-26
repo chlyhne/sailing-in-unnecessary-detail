@@ -8,30 +8,10 @@ website:
   title: "Sailing in Unnecessary Detail"
   site-url: https://sailinginunnecessarydetail.com/
   description: "Sailing, flow and the occasional useful equation."
-  navbar:
-    logo: assets/mark.svg
-    left:
-      - text: Field notes
-        href: index.qmd
-      - about.qmd
-    right:
-      - icon: github
-        href: https://github.com/chlyhne/sailing-in-unnecessary-detail
-      - icon: rss
-        href: index.xml
-  page-footer:
-    left: "Sailing in Unnecessary Detail ? Notes on sailing and simulation"
-    right: "Made with Quarto"
-  search: true
+  search: false
 format:
   html:
-    theme: cosmo
+    minimal: true
     css: styles.css
     lang: en
-    toc: true
-    toc-title: On this page
-    html-math-method: mathjax
-    link-external-newwindow: true
-    smooth-scroll: true
-    lightbox: true
-    code-copy: true
+    html-math-method: mathml

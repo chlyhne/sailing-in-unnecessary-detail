@@ -1,84 +1,57 @@
 ---
-title: "Reading the wind over the whole sail"
-description: "Combining a three-dimensional wind field into one map, weighted by the amount of sail at each height."
+title: "Why is passing to windward so hard?"
+description: "You get a header and less wind, while the boat ahead may get a lift and more wind. How two boats' positions can work against the one trying to pass."
 date: 2026-10-26
-categories: [Sailing, CFD, Wind]
-image: preview.png
-image-alt: "A chord-weighted map of the estimated change in VMG around a sailboat."
 ---
 
-A wind map taken four metres above the water is useful. But a sail extends across many heights, and the air does not behave identically at all of them. Can we combine those layers into a single picture that better represents the whole sail?
+[← All notes](../../index.qmd)
 
-Here, each height contributes according to the combined local chord lengths of the mainsail and jib. The result is a **sail-chord-weighted wind map**.
+You are a little behind another boat on a beat, but you are to windward. In clear air, you would normally sail faster and point higher. It ought to be possible to work your way past.
 
-::: {.callout-note title="What this calculation represents"}
-These maps come from an idealised, stationary 3D RANS simulation at a true wind speed of **5 m/s at 10 m**, a true wind angle of **41?**, and a boat speed of **6 knots**. The saved run stopped at iteration 592 and did **not pass all its numerical checks**. Treat the figures as exploratory model results; physical accuracy and mesh independence have not been established.
-:::
+Yet the gap refuses to close. You try to squeeze a little higher, lose speed, and find yourself stuck alongside or slipping backwards.
 
-## One map from many heights
+The wind around the two boats offers an explanation. You can be in a less favourable part of your competitor's wind field while they are in a more favourable part of yours.
 
-Let $F(x,y,z)$ be a displayed wind-effect value at a given position and height. If $c_m(z)$ and $c_j(z)$ are the mainsail and jib chord lengths, we calculate
+## The disturbance reaches to windward too
 
-$$
-\overline{F}(x,y)=
-\frac{\int F(x,y,z)\,[c_m(z)+c_j(z)]\,\mathrm{d}z}
-     {\int [c_m(z)+c_j(z)]\,\mathrm{d}z}.
-$$
+This map comes from a simulation of a boat sailing at **6 knots**, with **5 m/s of true wind at 10 m**, coming **41° from starboard**. The bow points up and the wind comes from the upper right.
 
-A height with more sail chord contributes more. Below a sail?s foot and above its head, that sail contributes nothing. This is a geometric weighting, with no extra weighting for wind speed or aerodynamic load.
+**Red means less favourable wind; blue means more favourable wind.** Wind strength and direction have been combined using a simple weighting that expresses their estimated effect on VMG—progress to windward—in knots for a typical boat.
 
-For this geometry, the active range is **1.15?11.65 m**. The jib stops contributing at **9.65 m**. The integrated chord areas are 20.202 m? for the mainsail and 12.376 m? for the jib, giving 32.578 m? in total.
+![The long wind shadow is only part of the disturbance. Unfavourable wind also reaches to windward, while a favourable patch sits ahead and to leeward.](combined.svg){#fig-combined fig-alt="A boat pointing upwards, with a red wake trailing down and left, red shading to its right, and a blue patch near the left side of its bow."}
 
-## The combined effect
+The long red tail is familiar: sit behind and to leeward and you get dirty air. But follow the red shading around the right-hand side of the boat. Being to windward does not automatically put you in clean air.
 
-![Estimated change in VMG, averaged over the sail height. Red indicates a worse value and blue a better value relative to the inherited layer references.](combined.svg){#fig-combined fig-alt="Top view of a sailboat and the surrounding chord-weighted VMG effect, with a red-to-blue colour scale."}
+Approach from slightly behind on that side and you can encounter both **less wind and a header**. Your usual advantage in clear air begins to disappear before you have drawn level.
 
-[Download the SVG](combined.svg){.figure-download}
+## You may be helping the boat you want to pass
 
-The colours use a simple prescribed relationship:
+Now read the same picture with it centred on your own boat. Your competitor is ahead and to leeward of you—towards the blue patch.
 
-$$
-\Delta\mathrm{VMG}=0.18\left(\Delta U_{\mathrm{knots}}-0.18H_{\mathrm{degrees}}\right),
-$$
+In that position, your disturbance can give them **more wind and a lift**, just as their disturbance is giving you less wind and a header.
 
-where $H$ is a header: a wind shift that makes the wind come more from ahead on the tack shown. A lift has the opposite sign. This formula is a working approximation, **not a boat polar or a direct prediction of boat speed from the CFD solver**.
+The difficulty is therefore mutual. You are trying to close the gap in worse conditions while the boat you are chasing may be enjoying better ones. A modest speed or pointing advantage in clear air can be swallowed by that difference.
 
-Each saved layer already has its own spatial reference. We average these centred values without subtracting a new median afterwards. The combined field and the two contributions retain their existing references; independent centring means their displayed values need not add up exactly.
+## Less wind, and the wrong wind angle
 
-## Wind speed and wind direction
+The two maps below separate the effects, using the same estimated VMG scale.
 
-Using the same weights, we can separate the speed and direction contributions. Both maps express the effect in **knots of estimated VMG**, allowing the same colour scale to be used throughout. They do not display raw wind speed or degrees of wind shift.
+![The wind-strength contribution: weaker wind in the wake and on the windward side, with stronger wind near the bow to leeward.](speed.svg){#fig-speed fig-alt="Red shading marks the wind-strength penalty behind and to windward of the boat; blue marks a favourable region near the bow to leeward."}
 
-![The contribution from changes in wind speed, weighted over the sail height.](speed.svg){#fig-speed fig-alt="Chord-weighted wind speed contribution to estimated VMG around the boat."}
+The loss of wind strength makes it harder to keep moving. Trying to hold a high lane can leave you short of speed, while bearing away to rebuild it costs height.
 
-[Download the SVG](speed.svg){.figure-download}
+![The wind-direction contribution: a header behind and to windward, with a lift near the bow.](direction.svg){#fig-direction fig-alt="The wind-direction map shows an adverse shift behind and to windward of the boat and a favourable shift near the bow."}
 
-![The contribution from headers and lifts, weighted over the sail height.](direction.svg){#fig-direction fig-alt="Chord-weighted contribution of wind direction changes to estimated VMG around the boat."}
+The header adds another obstacle: the wind comes more from ahead, making the course you wanted to hold harder to sail. Meanwhile, the lift in the favourable patch helps the other boat's position.
 
-[Download the SVG](direction.svg){.figure-download}
+## When squeezing past stops paying
 
-The hull and sail outlines are placement references. The sail outlines are taken at **4 m**, while the colour fields represent the full active height range.
+If you have stopped gaining, trying harder to pinch over the other boat may simply keep you in the same unfavourable relationship. **Tacking into clear air can be the better move**, giving you room to use your boat's normal speed and pointing ability again.
 
-## How the layers are combined
+The useful question is whether your advantage in clear air is still available where you are actually sailing.
 
-The field is interpolated linearly between saved heights. The integral is split at every saved layer and at each sail?s foot and head. Two-point Gaussian quadrature integrates the product of the linear field and the linear chord exactly within each interval.
+## About the picture
 
-If an active part of a vertical column is missing, that location remains masked. Its weight is not reassigned to another height, and missing values are not replaced by zero.
+The [Onsdagsbanen CFD model](https://github.com/chlyhne/Onsdagsbanen/tree/main/cfd) supplies the single-boat wind field, averaged over the sail height with weights based on sail chord. The two-boat explanation is a qualitative interpretation; this is not a simulation of a passing manoeuvre. The VMG values are approximate, and the result remains exploratory because the background wind-profile check failed.
 
-The averaging acts on the scalar wind-effect values before colour mapping. It does not average RGB colours or velocity vectors.
-
-## What this does ? and does not ? tell us
-
-The map helps compare the wind effects across the space around a boat while accounting for how much sail is present at each height. It is **not** an integration of sail pressure or driving force: chord length alone does not describe how strongly each part of a sail is loaded.
-
-For a two-boat study, a separate force calculation at a common boat speed would let us compare the driving forces along the course. Converting that force difference into a speed difference would require a resistance model and further assumptions.
-
-::: {.callout-tip title="A useful distinction"}
-A weighted wind map describes the surrounding wind field. A force integral describes the aerodynamic loading on a sail. Both are useful, but they answer different questions.
-:::
-
-## Data and provenance
-
-These figures use only the saved **marine_3d_padded_5ms** dataset, also published as the **v1_5ms** result package. No new CFD simulation was run for this article. The figure export reads the scalar layers embedded in the saved standalone 3D wind viewer.
-
-[Figure provenance](provenance.json) records the source file hash and weighting metadata. The original calculation and averaging implementation are in the [Onsdagsbanen repository](https://github.com/chlyhne/Onsdagsbanen/tree/main/cfd).
+[Figure sources and calculation details](provenance.json).

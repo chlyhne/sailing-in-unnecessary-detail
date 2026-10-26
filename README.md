@@ -1,6 +1,7 @@
 # Sailing in Unnecessary Detail
 
-An English-language Quarto blog about sailing, fluid dynamics and simulation.
+An English-language Quarto notebook about sailing, fluid dynamics and simulation.
+The site has a plain index and article pages, with a small stylesheet.
 
 ## Local preview
 
@@ -12,7 +13,11 @@ quarto preview
 
 ## Write a post
 
-Create `posts/your-post/index.qmd` with a title, description, explicit date and categories in its YAML header. Place its figures alongside it. Use `$...$` for inline mathematics and `$$...$$` for display equations. Use SVG for vector figures. Set `draft: true` while writing; remove it when ready to publish. The index and RSS feed update automatically.
+Create `posts/your-post/index.qmd` with a title and explicit date in its YAML
+header. Place its figures alongside it. Use `$...$` for inline mathematics and
+`$$...$$` for display equations. Set `draft: true` while writing; remove it when
+ready to publish. Add a link to the finished post in `index.qmd` and a link back
+to `../../index.qmd` in the post.
 
 Build all pages before publishing:
 
@@ -22,7 +27,7 @@ quarto render
 
 ## Publish
 
-Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys to GitHub Pages. In repository Settings ? Pages, the source must be **GitHub Actions**.
+Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys to GitHub Pages. In repository Settings → Pages, the source must be **GitHub Actions**.
 
 Live site: https://sailinginunnecessarydetail.com/
 

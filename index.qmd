@@ -1,27 +1,7 @@
 ---
-title: "Field notes"
-pagetitle: "Sailing in Unnecessary Detail ? Sailing, flow and useful equations"
-toc: false
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  feed: true
-  fields: [image, title, description, date, categories]
-  date-format: "D MMM YYYY"
+title: "Sailing in Unnecessary Detail"
 ---
 
-::: {.hero}
-::: {.eyebrow}
-SAILING / FLUID DYNAMICS / CURIOSITY
-:::
+Notes on sailing, flow and simulation.
 
-# A closer look at the wind.
-
-What happens to the air around a sailboat? How much does a wind shift matter? And what can a simulation actually tell us?
-
-Notes from the water and the computer, with figures you can explore and the maths behind the claims.
-:::
-
-## Latest notes
+- [Why is passing to windward so hard?](posts/reading-the-wind/index.qmd)
