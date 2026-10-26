@@ -16,4 +16,4 @@ Simulation results are estimates within a model. Each article explains its assum
 
 Figures open at a larger size when clicked. SVG downloads retain sharp labels, outlines and contours. Dense colour fields may be embedded as images inside the SVG to keep loading times reasonable.
 
-The site is written in Quarto and published from [its GitHub repository](https://github.com/chlyhne/wind-and-water).
+The site is written in Quarto and published from [its GitHub repository](https://github.com/chlyhne/sailing-in-unnecessary-detail).

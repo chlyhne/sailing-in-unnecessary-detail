@@ -6,7 +6,7 @@ project:
     - "posts/**/*.qmd"
 website:
   title: "Sailing in Unnecessary Detail"
-  site-url: https://chlyhne.github.io/wind-and-water/
+  site-url: https://chlyhne.github.io/sailing-in-unnecessary-detail/
   description: "Sailing, flow and the occasional useful equation."
   navbar:
     logo: assets/mark.svg
@@ -16,7 +16,7 @@ website:
       - about.qmd
     right:
       - icon: github
-        href: https://github.com/chlyhne/wind-and-water
+        href: https://github.com/chlyhne/sailing-in-unnecessary-detail
       - icon: rss
         href: index.xml
   page-footer:
