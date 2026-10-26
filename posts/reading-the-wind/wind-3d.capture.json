@@ -1,0 +1,86 @@
+{
+  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/wind_3d.html",
+  "viewport": {
+    "width": 1920,
+    "height": 906
+  },
+  "bounds": {
+    "x": 0,
+    "y": 112,
+    "width": 1920,
+    "height": 731
+  },
+  "camera": {
+    "up": {
+      "x": 0,
+      "y": 0,
+      "z": 1
+    },
+    "center": {
+      "x": 0.782151823835072,
+      "y": -0.8167130248261893,
+      "z": -0.0016640861397974691
+    },
+    "eye": {
+      "x": 0.07594417635431605,
+      "y": -2.14748101638984,
+      "z": 0.6485876430154147
+    },
+    "projection": {
+      "type": "orthographic"
+    }
+  },
+  "sceneDomain": {
+    "x": [
+      0,
+      1
+    ],
+    "y": [
+      0,
+      1
+    ]
+  },
+  "plotSize": {
+    "l": 0,
+    "r": 75,
+    "t": 20,
+    "b": 10,
+    "p": 0,
+    "w": 1845,
+    "h": 701
+  },
+  "viewerState": {
+    "field": "goodness",
+    "mode": "volume",
+    "height": 4.5,
+    "exactHeight": false
+  },
+  "opacity": "0.08",
+  "axisRanges": {
+    "x": [
+      -16,
+      9
+    ],
+    "y": [
+      -8,
+      16
+    ],
+    "z": [
+      0,
+      14
+    ]
+  },
+  "capture": "User-framed browser plot, 2x scale; manually cropped for publication.",
+  "manual_crop_pixels": {
+    "left": 0,
+    "top": 40,
+    "right": 2580,
+    "bottom": 1462
+  },
+  "uncropped_size_pixels": [
+    3840,
+    1462
+  ],
+  "image": "wind-3d.png",
+  "crop_note": "Removed toolbar, empty space and colour bar; the caption explains red/blue qualitatively. Camera and displayed field unchanged."
+}

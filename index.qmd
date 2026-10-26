@@ -1,7 +1,9 @@
 ---
 title: "Sailing in Unnecessary Detail"
+pagetitle: "Sailing in Unnecessary Detail"
+body-classes: home
 ---
 
-Notes on sailing, flow and simulation.
+A blog where I analyze sailing in unnecessary detail, in order to learn about it, but also to share my passion.
 
-- [Why is passing to windward so hard?](posts/reading-the-wind/index.qmd)
+I use simulations, figures and calculations to explore questions from sailing and the aim is to connect analysis with situations you recognise on the water, and to explain what the calculations can tell us.

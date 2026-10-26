@@ -1,0 +1,12 @@
+---
+title: "About"
+body-classes: about
+---
+
+My name is **Casper Lyhne** and I am a sailor and and Engineer from Denmark with an **MSc in Intelligent Autonomous Systems from Aalborg University**. When I am not sailing I tend to spend my evenings learning about sailing. I come at it from a very analytical angle and I love to explore and understand concepts using **simulations** and **data analysis**. This blog is my outlet for that.
+
+I sail a **Beneteau First 27 SE** from **Kaløvig Bådelaug** near Arhus, Denmark.
+
+## Contact
+
+[hummesse@gmail.com](mailto:hummesse@gmail.com)

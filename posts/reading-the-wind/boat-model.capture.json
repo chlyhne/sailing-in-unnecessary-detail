@@ -1,0 +1,45 @@
+{
+  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/geometry_3d.html",
+  "viewport": {
+    "width": 790,
+    "height": 876
+  },
+  "bounds": {
+    "x": 8,
+    "y": 8,
+    "width": 774,
+    "height": 832.1875
+  },
+  "camera": {
+    "up": {
+      "x": 0,
+      "y": 0,
+      "z": 1
+    },
+    "center": {
+      "x": 0.03650443796383987,
+      "y": 0.029847555466721687,
+      "z": -0.012119961201142455
+    },
+    "eye": {
+      "x": 1.6037414827769108,
+      "y": -2.0024944404123404,
+      "z": 1.133896643020591
+    },
+    "projection": {
+      "type": "orthographic"
+    }
+  },
+  "capture": "Browser screenshot of the user-framed plot; CSS viewport and camera unchanged; 2x pixel scale.",
+  "image": "boat-model.png",
+  "manual_crop_pixels": {
+    "left": 250,
+    "top": 220,
+    "right": 1280,
+    "bottom": 1500
+  },
+  "uncropped_size_pixels": [
+    1548,
+    1664
+  ]
+}

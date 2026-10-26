@@ -1,7 +1,8 @@
 # Sailing in Unnecessary Detail
 
 An English-language Quarto notebook about sailing, fluid dynamics and simulation.
-The site has a plain index and article pages, with a small stylesheet.
+The site has a short introduction, an About page and article pages, with a
+shared article index on the right and a small stylesheet.
 
 ## Local preview
 
@@ -16,8 +17,11 @@ quarto preview
 Create `posts/your-post/index.qmd` with a title and explicit date in its YAML
 header. Place its figures alongside it. Use `$...$` for inline mathematics and
 `$$...$$` for display equations. Set `draft: true` while writing; remove it when
-ready to publish. Add a link to the finished post in `index.qmd` and a link back
-to `../../index.qmd` in the post.
+ready to publish. Add a link back to `../../index.qmd` in the post.
+
+Add each published article to the list in `_includes/footer.html`, using the
+existing entry as a template. This one list appears on every page. Keep
+`index.qmd` as the short blog introduction and edit your biography in `about.qmd`.
 
 Build all pages before publishing:
 

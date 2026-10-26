@@ -15,3 +15,5 @@ format:
     css: styles.css
     lang: en
     html-math-method: mathml
+    include-before-body: _includes/header.html
+    include-after-body: _includes/footer.html
