@@ -1,4 +1,4 @@
-# Wind & Water
+# Sailing in Unnecessary Detail
 
 An English-language Quarto blog about sailing, fluid dynamics and simulation.
 

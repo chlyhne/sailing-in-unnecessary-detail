@@ -1,5 +1,5 @@
 ---
-title: "About Wind & Water"
+title: "About Sailing in Unnecessary Detail"
 ---
 
 This is a notebook about sailing, fluid dynamics and making sense of simulations.

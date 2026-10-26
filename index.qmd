@@ -1,6 +1,6 @@
 ---
 title: "Field notes"
-pagetitle: "Wind & Water ? Sailing, flow and useful equations"
+pagetitle: "Sailing in Unnecessary Detail ? Sailing, flow and useful equations"
 toc: false
 listing:
   contents: posts
