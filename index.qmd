@@ -1,0 +1,27 @@
+---
+title: "Field notes"
+pagetitle: "Wind & Water ? Sailing, flow and useful equations"
+toc: false
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  feed: true
+  fields: [image, title, description, date, categories]
+  date-format: "D MMM YYYY"
+---
+
+::: {.hero}
+::: {.eyebrow}
+SAILING / FLUID DYNAMICS / CURIOSITY
+:::
+
+# A closer look at the wind.
+
+What happens to the air around a sailboat? How much does a wind shift matter? And what can a simulation actually tell us?
+
+Notes from the water and the computer, with figures you can explore and the maths behind the claims.
+:::
+
+## Latest notes

@@ -1,0 +1,29 @@
+/* Quiet nautical colours, generous reading space, no external font dependency. */
+:root { --ink: #153744; --accent: #b94d30; --paper: #faf8f3; }
+body { background: var(--paper); color: #253b43; font-family: Georgia, "Times New Roman", serif; font-size: 1.1rem; line-height: 1.75; }
+h1,h2,h3,.navbar,.quarto-listing,.quarto-title-meta,.sidebar,.page-footer,.eyebrow,.figure-download { font-family: system-ui, sans-serif; }
+h1,h2,h3 { color: var(--ink); letter-spacing: -.035em; }
+a { color: #216679; text-underline-offset: .2em; }
+a:hover { color: var(--accent); }
+.navbar { background: var(--ink); padding: 1rem 0; }
+.navbar .navbar-brand,.navbar .nav-link,.navbar .quarto-navbar-tools a { color: #fff !important; }
+.navbar-brand { font-weight: 700; letter-spacing: -.04em; }
+.navbar-logo { max-height: 34px; }
+.hero { padding: 3.5rem 0 3rem; border-bottom: 1px solid #d3d9d8; margin-bottom: 2.5rem; max-width: 850px; }
+.hero h1 { font-family: Georgia, serif; font-size: clamp(2.7rem, 6vw, 4.8rem); line-height: 1.08; margin: 1rem 0 1.5rem; font-weight: 400; }
+.hero p { max-width: 660px; font-size: 1.2rem; }
+.eyebrow { color: var(--accent); font-size: .73rem; letter-spacing: .16em; font-weight: 700; }
+.quarto-title h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.12; }
+.quarto-title .description { font-size: 1.25rem; color: #566970; margin-top: 1rem; }
+.quarto-title-meta { font-size: .85rem; }
+.quarto-category { border-radius: 0 !important; }
+.quarto-listing-default .listing-title { font-weight: 650; }
+.quarto-listing-default .listing-description { font-family: Georgia, serif; line-height: 1.6; }
+.quarto-listing-default .thumbnail-image { object-fit: contain !important; background: white; }
+figure { background: white; padding: .5rem; margin: 2rem 0 1rem; }
+figcaption { font-size: .9rem; line-height: 1.5; padding: .5rem; color: #52676f; }
+.figure-download { font-size: .8rem; }
+.callout { background: #fff; }
+.math.display { overflow-x: auto; padding: .4rem 0; }
+.page-footer { border-top: 1px solid #d3d9d8; margin-top: 3rem; font-size: .8rem; }
+@media (max-width: 767px) { body { font-size: 1rem; } .hero { padding-top: 1.5rem; } figure { padding: 0; } }

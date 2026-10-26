@@ -1,0 +1,84 @@
+---
+title: "Reading the wind over the whole sail"
+description: "Combining a three-dimensional wind field into one map, weighted by the amount of sail at each height."
+date: 2026-10-26
+categories: [Sailing, CFD, Wind]
+image: preview.png
+image-alt: "A chord-weighted map of the estimated change in VMG around a sailboat."
+---
+
+A wind map taken four metres above the water is useful. But a sail extends across many heights, and the air does not behave identically at all of them. Can we combine those layers into a single picture that better represents the whole sail?
+
+Here, each height contributes according to the combined local chord lengths of the mainsail and jib. The result is a **sail-chord-weighted wind map**.
+
+::: {.callout-note title="What this calculation represents"}
+These maps come from an idealised, stationary 3D RANS simulation at a true wind speed of **5 m/s at 10 m**, a true wind angle of **41?**, and a boat speed of **6 knots**. The saved run stopped at iteration 592 and did **not pass all its numerical checks**. Treat the figures as exploratory model results; physical accuracy and mesh independence have not been established.
+:::
+
+## One map from many heights
+
+Let $F(x,y,z)$ be a displayed wind-effect value at a given position and height. If $c_m(z)$ and $c_j(z)$ are the mainsail and jib chord lengths, we calculate
+
+$$
+\overline{F}(x,y)=
+\frac{\int F(x,y,z)\,[c_m(z)+c_j(z)]\,\mathrm{d}z}
+     {\int [c_m(z)+c_j(z)]\,\mathrm{d}z}.
+$$
+
+A height with more sail chord contributes more. Below a sail?s foot and above its head, that sail contributes nothing. This is a geometric weighting, with no extra weighting for wind speed or aerodynamic load.
+
+For this geometry, the active range is **1.15?11.65 m**. The jib stops contributing at **9.65 m**. The integrated chord areas are 20.202 m? for the mainsail and 12.376 m? for the jib, giving 32.578 m? in total.
+
+## The combined effect
+
+![Estimated change in VMG, averaged over the sail height. Red indicates a worse value and blue a better value relative to the inherited layer references.](combined.svg){#fig-combined fig-alt="Top view of a sailboat and the surrounding chord-weighted VMG effect, with a red-to-blue colour scale."}
+
+[Download the SVG](combined.svg){.figure-download}
+
+The colours use a simple prescribed relationship:
+
+$$
+\Delta\mathrm{VMG}=0.18\left(\Delta U_{\mathrm{knots}}-0.18H_{\mathrm{degrees}}\right),
+$$
+
+where $H$ is a header: a wind shift that makes the wind come more from ahead on the tack shown. A lift has the opposite sign. This formula is a working approximation, **not a boat polar or a direct prediction of boat speed from the CFD solver**.
+
+Each saved layer already has its own spatial reference. We average these centred values without subtracting a new median afterwards. The combined field and the two contributions retain their existing references; independent centring means their displayed values need not add up exactly.
+
+## Wind speed and wind direction
+
+Using the same weights, we can separate the speed and direction contributions. Both maps express the effect in **knots of estimated VMG**, allowing the same colour scale to be used throughout. They do not display raw wind speed or degrees of wind shift.
+
+![The contribution from changes in wind speed, weighted over the sail height.](speed.svg){#fig-speed fig-alt="Chord-weighted wind speed contribution to estimated VMG around the boat."}
+
+[Download the SVG](speed.svg){.figure-download}
+
+![The contribution from headers and lifts, weighted over the sail height.](direction.svg){#fig-direction fig-alt="Chord-weighted contribution of wind direction changes to estimated VMG around the boat."}
+
+[Download the SVG](direction.svg){.figure-download}
+
+The hull and sail outlines are placement references. The sail outlines are taken at **4 m**, while the colour fields represent the full active height range.
+
+## How the layers are combined
+
+The field is interpolated linearly between saved heights. The integral is split at every saved layer and at each sail?s foot and head. Two-point Gaussian quadrature integrates the product of the linear field and the linear chord exactly within each interval.
+
+If an active part of a vertical column is missing, that location remains masked. Its weight is not reassigned to another height, and missing values are not replaced by zero.
+
+The averaging acts on the scalar wind-effect values before colour mapping. It does not average RGB colours or velocity vectors.
+
+## What this does ? and does not ? tell us
+
+The map helps compare the wind effects across the space around a boat while accounting for how much sail is present at each height. It is **not** an integration of sail pressure or driving force: chord length alone does not describe how strongly each part of a sail is loaded.
+
+For a two-boat study, a separate force calculation at a common boat speed would let us compare the driving forces along the course. Converting that force difference into a speed difference would require a resistance model and further assumptions.
+
+::: {.callout-tip title="A useful distinction"}
+A weighted wind map describes the surrounding wind field. A force integral describes the aerodynamic loading on a sail. Both are useful, but they answer different questions.
+:::
+
+## Data and provenance
+
+These figures use only the saved **marine_3d_padded_5ms** dataset, also published as the **v1_5ms** result package. No new CFD simulation was run for this article. The figure export reads the scalar layers embedded in the saved standalone 3D wind viewer.
+
+[Figure provenance](provenance.json) records the source file hash and weighting metadata. The original calculation and averaging implementation are in the [Onsdagsbanen repository](https://github.com/chlyhne/Onsdagsbanen/tree/main/cfd).

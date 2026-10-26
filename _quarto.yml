@@ -1,0 +1,37 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "posts/**/*.qmd"
+website:
+  title: "Wind & Water"
+  site-url: https://chlyhne.github.io/wind-and-water/
+  description: "Sailing, flow and the occasional useful equation."
+  navbar:
+    logo: assets/mark.svg
+    left:
+      - text: Field notes
+        href: index.qmd
+      - about.qmd
+    right:
+      - icon: github
+        href: https://github.com/chlyhne/wind-and-water
+      - icon: rss
+        href: index.xml
+  page-footer:
+    left: "Wind & Water ? Notes on sailing and simulation"
+    right: "Made with Quarto"
+  search: true
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    lang: en
+    toc: true
+    toc-title: On this page
+    html-math-method: mathjax
+    link-external-newwindow: true
+    smooth-scroll: true
+    lightbox: true
+    code-copy: true
