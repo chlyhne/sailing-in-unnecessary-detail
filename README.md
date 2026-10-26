@@ -24,7 +24,7 @@ quarto render
 
 Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys to GitHub Pages. In repository Settings ? Pages, the source must be **GitHub Actions**.
 
-Live site: https://chlyhne.github.io/sailing-in-unnecessary-detail/
+Live site: https://sailinginunnecessarydetail.com/
 
 ## CFD figures
 
