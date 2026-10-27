@@ -1,9 +1,12 @@
 (() => {
   'use strict';
   const loader = document.querySelector('script[data-comments-api]');
-  if (!loader || !document.body.classList.contains('article') || !location.pathname.startsWith('/posts/')) return;
+  const latestPost = document.querySelector('.latest-post[data-comments-post]');
+  const postPage = document.body.classList.contains('article') && location.pathname.startsWith('/posts/');
+  if (!loader || (!postPage && !latestPost)) return;
 
-  const post = location.pathname.replace(/\/index\.html$/i, '/').replace(/\/?$/, '/');
+  const post = (latestPost?.dataset.commentsPost || location.pathname)
+    .replace(/\/index\.html$/i, '/').replace(/\/?$/, '/');
   const local = ['localhost', '127.0.0.1'].includes(location.hostname);
   const api = local ? 'http://127.0.0.1:8787' : loader.dataset.commentsApi;
   const section = document.createElement('section');
@@ -12,6 +15,9 @@
   section.setAttribute('aria-labelledby', 'comments-heading');
   section.innerHTML = `
     <h2 id="comments-heading">Comments</h2>
+    <p class="comment-status" data-list-status role="status" aria-live="polite">Loading comments…</p>
+    <div class="comment-list" aria-label="Reader comments"></div>
+    <button type="button" class="comments-more" hidden>Load older comments</button>
     <form class="comment-form">
       <label for="comment-name">Name</label>
       <input id="comment-name" name="name" autocomplete="name" required maxlength="80">
@@ -25,9 +31,6 @@
       <button type="submit">Post comment</button>
       <p class="comment-status" data-form-status role="status" aria-live="polite"></p>
     </form>
-    <p class="comment-status" data-list-status role="status" aria-live="polite">Loading comments…</p>
-    <div class="comment-list" aria-label="Reader comments"></div>
-    <button type="button" class="comments-more" hidden>Load older comments</button>
   `;
   loader.before(section);
   const form = section.querySelector('form');

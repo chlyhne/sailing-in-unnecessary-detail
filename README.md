@@ -55,7 +55,8 @@ tracking or block the tag will not be included.
 Every post has a comment form with a name and plain-text comment. Comments
 are stored in the blog's own Cloudflare D1 database through `comments-api/`;
 readers do not need an account or email address. The newest post on the home
-page links to its comment thread. Titles can change without losing comments.
+page shows the same comment thread as its article page, with comments above
+the new-comment form. Titles can change without losing comments.
 
 See [comments-api/README.md](comments-api/README.md) for local preview,
 deployment, comment removal and database backups.

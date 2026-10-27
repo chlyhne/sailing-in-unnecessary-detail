@@ -7,7 +7,8 @@ tracking cookie. The blog itself continues to run on GitHub Pages.
 
 Each thread is keyed by its post directory, so `/posts/example/` and
 `/posts/example/index.html` share comments. Changing an article title does not
-change its thread. The home page links to the newest article's discussion.
+change its thread. The home page displays the newest article's discussion too,
+with existing comments followed by the new-comment form.
 
 ## Development
 

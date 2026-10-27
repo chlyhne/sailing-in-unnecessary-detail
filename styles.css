@@ -177,7 +177,7 @@ blockquote {
   border-top: 1px solid var(--rule);
 }
 .post-comments h2 { margin-top: 0; }
-.comment-form { display: grid; gap: .65rem; }
+.comment-form { display: grid; gap: .65rem; margin-top: 2rem; }
 .comment-form label { font: .85rem/1.5 var(--sans); }
 .comment-form input, .comment-form textarea {
   width: 100%;
