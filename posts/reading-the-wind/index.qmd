@@ -2,6 +2,7 @@
 title: "What a boat does to the wind around it"
 description: "Why can it be so hard to pass to windward, even when you normally sail higher and faster?"
 date: 2026-10-26
+date-modified: 2026-10-27
 ---
 
 [← All notes](../../index.qmd)
@@ -10,9 +11,39 @@ You are a little behind and to windward of a competitor on a beat. You normally 
 
 I looked for figures explaining this, but mostly found conceptual drawings without much data. A quick simulation seemed like a good idea. It turned out to be unnecessarily detailed, just like most other things I do.
 
-## The simulation
+## Why passing to windward is hard
 
-I used [SU2](https://su2code.github.io/) for a 3D Computational Fluid Dynamics (CFD) simulation. The Reynolds-Averaged Navier–Stokes (RANS) equations describe the average flow, with an SST model accounting for turbulence. This gives a steady wind field around the boat.
+The map below combines changes in wind strength and direction into one picture, averaged over the sail height. Red marks less favourable wind; blue marks more favourable wind. A **VMG-based percentage metric** gives the two effects a common scale.[^vmg]
+
+This lets us compare a loss of wind strength with a header, and see their combined effect. The percentages are a way to read the wind field together. They do not predict how much VMG a boat will actually gain or lose there.[^equivalent]
+
+
+![Wind strength and direction combined on one VMG-based percentage scale, averaged over sail height. Red is less favourable; blue is more favourable.](combined.svg){#fig-combined fig-alt="A boat pointing upwards, with a red wake trailing down and left, red shading to windward, and a blue patch ahead and to leeward. The colour scale is a combined wind-effect metric."}
+
+The long red wind shadow is familiar. But red also reaches around the windward side. Approaching from slightly behind, you can encounter **less wind and a header** before drawing level. Your usual advantage in clear air starts to disappear.
+
+Now centre the same picture on your own boat. The competitor ahead and to leeward sits towards your blue patch: your disturbance can give them **more wind and a lift**. You may be helping the boat you are trying to pass.
+
+There is also the unevenness of the wind itself. When wind speed and direction change over less than a boat length, the sails encounter different inflows at the same time, and the wind changes again as the boat moves. Keeping everything working together becomes harder. **The metric does not account for those problems.**[^nonuniform]
+
+### Less wind and a worse angle
+
+The combined map contains two effects: a change in wind strength and a change in direction. Both maps below use the same percentage scale as the combined result. Their contributions add to the combined metric at each position.
+
+![The wind-strength contribution to the combined metric.](speed.svg){#fig-speed fig-alt="The contribution from weaker or stronger true wind, on the shared VMG-based percentage scale."}
+
+Less wind makes it harder to hold speed in the high lane. Bearing away to rebuild speed costs height.
+
+![The wind-direction contribution to the combined metric.](direction.svg){#fig-direction fig-alt="The contribution from headers and lifts, on the shared VMG-based percentage scale."}
+
+The header makes that lane harder to hold, while the lift helps the boat ahead and to leeward.
+
+If you have stopped gaining, pinching harder may just keep you in this relationship. **Tacking into clear air can be the better move**, giving you room to use your normal speed and pointing advantage again.
+
+## How I made the map
+
+
+I used a three-dimensional flow simulation to calculate the steady wind field around the boat.[^solver]
 
 The boat model was found online, with the sails adapted for this simulation. It is about 10 m long and 3 m wide, with a mainsail and jib.
 
@@ -20,58 +51,80 @@ The boat model was found online, with the sails adapted for this simulation. It 
 
 ![The simplified hull, mast and curved sails.](boat-model.png){#fig-boat-model fig-alt="An oblique 3D view of a simplified hull and mast with a curved, twisted mainsail and jib."}
 
-The boat sails at 6 knots in 5 m/s true wind at 10 m height, coming from 41 degrees to starboard. The hull stays upright and the sails hold their shape.
+The boat sails at 6 knots in a moderate breeze. The hull stays upright and the sails hold their shape.[^conditions]
 
-A logarithmic wind profile accounts for the sea's surface roughness: less wind near the water, more higher up. Combined with the boat's speed, this also changes the apparent wind angle up the rig. The sea is flat; there are no simulated waves.
+There is less wind near the water and more higher up. Combined with the boat's speed, this also changes the apparent wind angle up the rig.[^wind-profile]
 
 ### Getting the trim right
 
-The first sails were too blunt. The final profiles have 8% camber, 0.1% thickness relative to chord, and separate trim and twist. I used 2D simulations at different heights to work on the trim, since a stalled sail would produce a very different wind field.
+The first sails were too blunt. I used simpler two-dimensional calculations to find a reasonable trim for the mainsail and jib together, before checking the full three-dimensional result.[^trim]
 
-The 3D check below shows very little separation compared with what I would expect in real sailing. These sails are practically perfectly trimmed.
+The orange regions below show air flowing backwards along the sails. They help identify where the flow is struggling to stay attached.[^backflow]
 
-![Small regions of reverse flow: orange/red on the leeward side, blue on the windward side.](sail-flow.png){#fig-sail-flow fig-alt="A side view of transparent sails with narrow orange/red reverse-flow regions near their leading edges and upper mainsail, and a small blue region near the mainsail foot."}
+![Resolved reverse flow near the sails, shown in orange.](sail-flow.png){#fig-sail-flow fig-alt="Transparent sails with orange reverse-flow regions, including the forward half of the lower mainsail."}
+
+Notice the reverse flow over the forward half of the lower mainsail. I am happy to accept that here: this trim gave the best forward drive in the 2D search. The pattern also looks familiar from real sailing, where I often see reverse flow in that part of the mainsail.
 
 ### From 3D to 2D
 
 The resulting wind field is hard to read. Overlapping surfaces obscure each other, making it difficult to judge what another boat would experience.
 
-![Plenty of detail, but difficult to interpret. Red indicates worse estimated VMG; blue indicates better.](wind-3d.png){#fig-wind-3d fig-alt="The boat surrounded by overlapping translucent red and blue surfaces that obscure parts of the sails and wind field."}
+![Plenty of detail, but difficult to interpret. Red and blue show the same combined wind-effect metric as the maps above.](wind-3d.png){#fig-wind-3d fig-alt="The boat surrounded by overlapping translucent red and blue surfaces, coloured using the VMG-based wind-effect metric."}
 
-To get one value at each position around the boat, I averaged over the sail height. A boat feels the disturbance across its whole rig, so each height is weighted by the combined local chord of the mainsail and jib. Heights with more sail area count more.
+To make the top-down map at the start of this article, I averaged over the sail height. A boat feels the disturbance across its whole rig, so broad parts of the sails count more than their narrow heads.[^weighting]
 
-Wind-strength and direction contributions use the same area weighting and each layer's background reference. To combine them, I used a rough local approximation to a polar's effect on VMG:
-
-$$
-\Delta \mathrm{VMG} \approx 0.18\left(\Delta U - 0.18\,\Delta H\right)
-$$
-
-Here $\Delta U$ is the wind-speed change in knots and $\Delta H$ is the header in degrees; a lift is negative. The result is in knots of VMG. These coefficients are approximate, but let me compare both effects on one scale.
-
-## Why passing to windward is hard
-
-![The disturbance averaged over sail height. Red is worse, blue is better.](combined.svg){#fig-combined fig-alt="A boat pointing upwards, with a red wake trailing down and left, red shading to windward, and a blue patch ahead and to leeward."}
-
-The long red wind shadow is familiar. But red also reaches around the windward side. Approaching from slightly behind, you can encounter **less wind and a header** before drawing level. Your usual advantage in clear air starts to disappear.
-
-Now centre the same picture on your own boat. The competitor ahead and to leeward sits towards your blue patch: your disturbance can give them **more wind and a lift**. You may be helping the boat you are trying to pass.
-
-### The two contributions
-
-Both maps below use the same estimated VMG scale.
-
-![The wind-strength contribution.](speed.svg){#fig-speed fig-alt="Weaker wind behind and to windward of the boat, with stronger wind ahead and to leeward."}
-
-Less wind makes it harder to hold speed in the high lane. Bearing away to rebuild speed costs height.
-
-![The wind-direction contribution.](direction.svg){#fig-direction fig-alt="A header behind and to windward of the boat, with a lift ahead and to leeward."}
-
-The header makes that lane harder to hold, while the lift helps the boat ahead and to leeward.
-
-If you have stopped gaining, pinching harder may just keep you in this relationship. **Tacking into clear air can be the better move**, giving you room to use your normal speed and pointing advantage again.
+I used a boat polar to choose the relative weights of wind strength and direction.[^polar] A local linear approximation puts them on the same percentage scale.[^linearisation] Both contributions use the same height weighting, so they add to the combined map.[^wind-frame]
 
 ## About the result
 
-The [Onsdagsbanen CFD code](https://github.com/chlyhne/Onsdagsbanen/tree/main/cfd) supplies the single-boat wind field. The two-boat explanation is a qualitative interpretation, not a simulated passing manoeuvre. VMG values are approximate, and the result remains exploratory because the background wind-profile check failed.
+This is a single-boat calculation. The passing scenario is a practical interpretation of its wind field; the second boat, its interaction with the flow and its response to changing conditions have not been simulated.[^numerics]
 
 [Figure sources and calculation details](provenance.json).
+
+## Notes {.unnumbered}
+
+[^vmg]: Velocity made good (VMG) is the component of boat velocity towards the mark. Here, “upwind” means the original clear-air wind direction. The metric uses a polar's local percentage VMG response to give wind strength and direction comparable weights. The denominator is a fixed reference VMG. The $\Delta\mathrm{VMG}$ labels on the figures denote this calibration, not a prediction of a receiving boat's performance.
+
+[^equivalent]: Steady, uniform-wind polar data supply the scale for this metric. Each height's centred wind perturbation is converted with the same linearised response, then the scores are averaged over the rig. A score of −5% is a value on that comparison scale; it is not a claim that a boat placed there loses 5% of its VMG. There is no receiving boat in the CFD domain and no calculation of its sail forces in the spatially varying inflow.
+
+[^nonuniform]: The metric contains no term for gradients across a receiving boat, its sail-to-sail interaction in that inflow, transient loading or the time needed to steer, retrim and rebuild speed. Different parts of the rig can encounter different wind angles and strengths simultaneously, creating difficulties that a uniform-wind polar cannot describe. Those effects need a separate analysis; the score is neither a bound nor a quantitative prediction of their cost. Actual two-yacht interactions can also change the flow itself: see [wind-tunnel measurements of two-yacht interaction](https://doi.org/10.5957/CSYS-2013-012) and [transient two-yacht simulations](https://doi.org/10.1016/j.oceaneng.2019.106286).
+
+[^solver]: The implementation uses [SU2](https://su2code.github.io/) to solve the stationary Reynolds-Averaged Navier–Stokes (RANS) equations with an SST turbulence model. This predicts a mean flow with modelled turbulence; it does not resolve the instantaneous gusts and fluctuating wakes that a moving boat would encounter. The implementation is in the [Onsdagsbanen CFD code](https://github.com/chlyhne/Onsdagsbanen/tree/main/cfd).
+
+[^conditions]: The source boat is held at 6 knots in 5 m/s true wind at 10 m height, coming from 41 degrees to starboard. The hull stays upright, the sea is flat, and no waves or elastic deformation of the sails and rig are simulated. The 6-knot source-boat speed sets the moving reference frame; it is separate from the polar boat's predicted speed.
+
+[^wind-profile]: The imposed true-wind speed follows a logarithmic profile representing sea-surface roughness. True-wind direction is held constant with height. Apparent wind changes in both speed and angle when the source boat's velocity is subtracted, even without a change in true-wind direction.
+
+[^trim]: Both sails have 12% camber, maximum depth at 45% chord, 0.1% thickness relative to chord and 2 degrees of total twist. A paired-sail 2D search at 4.52 m varied the two sheeting angles to maximise forward force per metre of span. It selected foot angles of approximately 12.13 degrees for the mainsail and 23.32 degrees for the jib. That representative-section optimisation does not establish a whole-rig or global optimum.
+
+[^backflow]: The orange overlay marks regions near either sail face where velocity projected on the local horizontal camber tangent is less than −0.05 m/s. Reverse flow is an indicator of separation, rather than a complete map of separated flow or proof of an optimal trim.
+
+[^weighting]: At each height, the weight is the combined local chord of the mainsail and jib:
+
+    $$
+    \overline{F}(x,y)=
+    \frac{\int F(x,y,z)\,[c_m(z)+c_j(z)]\,\mathrm{d}z}
+         {\int [c_m(z)+c_j(z)]\,\mathrm{d}z}.
+    $$
+
+    The active height range is 1.15–11.65 m; the jib ends at 9.65 m. The integrated chord area is 32.578 m², and the chord-weighted mean height is 4.52 m. Fields are interpolated between saved 0.5 m layers and integrated using two-point Gaussian quadrature, splitting at layer heights and sail heads and feet. Columns with missing active layers remain masked. This averages scalar effects before colour mapping; it is a geometric weighting, with no extra weighting for local wind speed or aerodynamic load. It is not a sail-force integration. Sail outlines in the averaged maps are drawn at 4 m as placement references.
+
+[^polar]: The reference is the public [2019 ORC International certificate for the X-332 XPLORER, SWE 16532](https://matbrev.svensksegling.se/Files/ORCPdf/9bf397be-6679-4a24-94c9-f6c397e8d9b1.pdf). Its polar values are VPP predictions for that boat and configuration, used here to calibrate the metric's relative weights. [ORC explains the predicted speeds and target angles](https://orc.org/sailors/sailor-services/speed-guides). The transcribed [polar data](x332-orc-polar.json) and [linearisation details](orc-linearisation.json) are included with this article.
+
+[^linearisation]: I interpolate boat speed first in true wind strength, then in true wind angle, including the interpolated best-beat point. The reference is 5 m/s true wind (9.72 knots) and 41 degrees TWA. Interpolated boat speed is 5.88 knots and reference upwind VMG is 4.44 knots.
+
+    Let $V(U,\alpha)$ be the interpolated polar boat speed. At a fixed course, a header $H$ changes local TWA from $\alpha_0$ to $\alpha_0-H$. Projection towards the original upwind direction uses the same $\cos\alpha_0$ before and after the disturbance, so that factor cancels from the percentage ratio:
+
+    $$
+    M=100\frac{\Delta\mathrm{VMG}_{\mathrm{polar}}}{\mathrm{VMG}_0}
+    \approx\frac{100}{V_0}\left(
+    \frac{\partial V}{\partial U}\Delta U
+    -\frac{\partial V}{\partial\alpha}H\right)
+    \approx 5.95\,\Delta U-0.972\,H.
+    $$
+
+    Here $M$ is the comparison metric, $\Delta U$ the true-wind-speed change in knots and $H$ the true-wind header in degrees; a lift is negative. Near the reference, a one-knot reduction in wind contributes about −5.95 percentage points to the metric, and a one-degree header about −0.97. The derivatives are evaluated with 0.001-knot and 0.001-degree steps. The calibration is local; it does not optimise a new course or trim or calculate the performance of a boat in the disturbed field.
+
+[^wind-frame]: The cached CFD fields describe wind in the source boat's moving frame. I recover the centred speed and turning perturbations, express their first-order Cartesian change in the true-wind frame using the source boat's fixed velocity, then apply the polar derivatives. The inherited height-dependent spatial references are retained, with no additional centring. The denominator is the same reference VMG at every height. Applying the same chord weights to both linear contributions preserves their sum in the combined map.
+
+[^numerics]: The dataset is **trimmed_3d_v2**, stopped at iteration **668**. Convergence, field-stability and wall-resolution checks passed, but the background-wind-profile preservation check failed. That failure limits interpretation of the imposed background reference; the figures remain exploratory, and physical accuracy and mesh independence have not been established. [Provenance](provenance.json) records the source data, calculation details and figure hashes.

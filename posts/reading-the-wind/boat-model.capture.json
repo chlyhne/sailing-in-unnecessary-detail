@@ -1,45 +1,55 @@
 {
-  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/geometry_3d.html",
   "viewport": {
-    "width": 790,
-    "height": 876
-  },
-  "bounds": {
-    "x": 8,
-    "y": 8,
-    "width": 774,
-    "height": 832.1875
+    "width": 789,
+    "height": 920
   },
   "camera": {
     "up": {
-      "x": 0,
-      "y": 0,
-      "z": 1
+      "x": 0.18038362291211635,
+      "y": -0.26456264693777043,
+      "z": 0.9473480640347453
     },
     "center": {
-      "x": 0.03650443796383987,
-      "y": 0.029847555466721687,
-      "z": -0.012119961201142455
+      "x": 0,
+      "y": 0,
+      "z": 0
     },
     "eye": {
-      "x": 1.6037414827769108,
-      "y": -2.0024944404123404,
-      "z": 1.133896643020591
+      "x": -1.4999999999999998,
+      "y": 2.2,
+      "z": 0.8999999999999995
     },
     "projection": {
       "type": "orthographic"
     }
   },
-  "capture": "Browser screenshot of the user-framed plot; CSS viewport and camera unchanged; 2x pixel scale.",
-  "image": "boat-model.png",
-  "manual_crop_pixels": {
-    "left": 250,
-    "top": 220,
-    "right": 1280,
-    "bottom": 1500
+  "axisRanges": {
+    "x": [
+      -5.7,
+      5.7
+    ],
+    "y": [
+      -2.7,
+      2.7
+    ],
+    "z": [
+      -0.6,
+      12.3
+    ]
   },
-  "uncropped_size_pixels": [
-    1548,
-    1664
+  "bounds": {
+    "x": 8,
+    "y": 108,
+    "width": 773,
+    "height": 694
+  },
+  "source": "Onsdagsbanen/cfd/output/trimmed_3d_v2/visualizations/geometry_3d.html",
+  "dataset": "trimmed_3d_v2",
+  "image": "boat-model.png",
+  "capture": "Author-framed scene-only browser screenshot; camera and CSS viewport unchanged.",
+  "sha256": "f734aec4f4b2be757888c0027c17f07ad18413297b31f8ca1628cd31746af717",
+  "image_size_pixels": [
+    773,
+    694
   ]
 }

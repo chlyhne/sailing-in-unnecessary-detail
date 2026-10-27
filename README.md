@@ -37,4 +37,25 @@ Live site: https://sailinginunnecessarydetail.com/
 
 ## CFD figures
 
-The first article uses the saved marine_3d_padded_5ms dataset. Its `provenance.json` records the source hash and weighting method. The SVG colour mesh is rasterised; text, outlines and contours remain vectors. Rendering the blog requires no solver, Python environment or CFD data.
+The first article uses the saved `trimmed_3d_v2` dataset. Its `provenance.json`
+records the source hashes, weighting method and hashes of all six figures.
+The three 3D screenshots use author-framed browser views; their camera, viewport
+and capture details are saved in the corresponding `*.capture.json` files.
+The SVG colour mesh is rasterised; text, outlines and contours remain vectors.
+Rendering the blog requires no solver, Python environment or CFD data.
+
+The wind-effect maps use a linearisation of an interpolated 2019 ORC X-332
+polar at 5 m/s true wind and 41 degrees TWA, expressed as a percentage of the
+reference upwind VMG while holding course. The apparent-wind perturbations are
+converted to true-wind perturbations before applying the derivatives. The
+source table and coefficient details are included alongside the article.
+
+To regenerate the percentage maps from saved CFD caches:
+
+```powershell
+python scripts/export_orc_maps.py --cfd-root ../ob
+```
+
+This only post-processes saved scalar fields and starts no simulation. A matching
+3D percentage viewer is written under `cfd/output/trimmed_3d_v2/orc_percent` in
+the CFD repository. Its article screenshot is captured after author framing.

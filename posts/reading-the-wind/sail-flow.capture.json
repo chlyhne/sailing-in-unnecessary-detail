@@ -1,14 +1,9 @@
 {
-  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/separation_3d_both_sides.html",
+  "dataset": "C:\\Users\\E1536993\\Git-projects\\ob\\cfd\\output\\trimmed_3d_v2",
+  "iteration": 668,
   "viewport": {
-    "width": 1920,
-    "height": 906
-  },
-  "bounds": {
-    "x": 8,
-    "y": 8,
-    "width": 1904,
-    "height": 860.6875
+    "width": 1897,
+    "height": 888
   },
   "camera": {
     "up": {
@@ -17,108 +12,57 @@
       "z": 1
     },
     "center": {
-      "x": -0.0901528439504052,
-      "y": -0.05877979544454009,
-      "z": 0.02066613623233675
+      "x": 1.0465820170449998,
+      "y": -0.3967375318448339,
+      "z": -0.024440274414453303
     },
     "eye": {
-      "x": -0.18295889453373754,
-      "y": 2.6748757352792296,
-      "z": 0.6675930844409191
+      "x": 1.8505663000229338,
+      "y": 0.7827995029755805,
+      "z": 0.7847578819178033
     },
     "projection": {
       "type": "orthographic"
     }
   },
-  "sceneDomain": {
-    "x": [
-      0,
-      1
-    ],
-    "y": [
-      0,
-      1
-    ]
-  },
-  "plotSize": {
-    "l": 439,
-    "r": 0,
-    "t": 110,
-    "b": 155,
-    "p": 0,
-    "w": 1465,
-    "h": 596
-  },
   "axisRanges": {
     "x": [
-      -5.7,
-      5.7
+      -16,
+      9
     ],
     "y": [
-      -2.7,
-      2.7
+      -8,
+      16
     ],
     "z": [
-      -0.6,
-      12.3
+      0,
+      14
     ]
   },
-  "visibleTraces": [
-    {
-      "name": "Skrog",
-      "visible": true
-    },
-    {
-      "visible": true
-    },
-    {
-      "visible": true
-    },
-    {
-      "name": "Mast",
-      "visible": true
-    },
-    {
-      "name": "Storsejl",
-      "visible": true
-    },
-    {
-      "visible": true
-    },
-    {
-      "name": "Forsejl",
-      "visible": true
-    },
-    {
-      "visible": true
-    },
-    {
-      "name": "storsejl \u00b7 l\u00e6side",
-      "visible": true
-    },
-    {
-      "name": "storsejl \u00b7 luvside",
-      "visible": true
-    },
-    {
-      "name": "forsejl \u00b7 l\u00e6side",
-      "visible": true
-    },
-    {
-      "name": "forsejl \u00b7 luvside",
-      "visible": true
-    }
-  ],
-  "capture": "User-framed browser plot, 2x scale; manually cropped for publication.",
-  "manual_crop_pixels": {
-    "left": 1860,
-    "top": 335,
-    "right": 2820,
-    "bottom": 1410
+  "viewerState": {
+    "field": "backflow",
+    "mode": "volume",
+    "height": 4
   },
-  "uncropped_size_pixels": [
-    3808,
-    1720
+  "reverse_speed_m_s": 0.05,
+  "sceneBounds": {
+    "x": 0,
+    "y": 131,
+    "width": 1822,
+    "height": 683
+  },
+  "image_size_pixels": [
+    1822,
+    683
   ],
-  "image": "sail-flow.png"
+  "source": "Onsdagsbanen/cfd/visualizations/datasets/output/trimmed_3d_v2/wind_3d.html",
+  "image": "sail-flow.png",
+  "bounds": {
+    "x": 0,
+    "y": 190,
+    "width": 1822,
+    "height": 683
+  },
+  "capture": "Author-framed scene-only browser screenshot; camera, viewport and displayed backflow unchanged.",
+  "sha256": "c7bad05744bbfde76fdc4c59e097519d65c4273f697e006a37ef0b1adabf7fce"
 }

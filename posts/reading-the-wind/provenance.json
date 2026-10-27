@@ -1,10 +1,17 @@
 {
-  "dataset": "marine_3d_padded_5ms",
-  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/wind_3d.html",
-  "source_html_sha256": "f3cfdf63e7a9236a04ce659221dd51d7f100453706649ff9ea6c8f5881fac47b",
-  "export": "Scalar float32 layers decoded from the standalone viewer; original chord quadrature and renderer; English labels; raster colour mesh with vector text and contours.",
+  "dataset": "trimmed_3d_v2",
+  "source": "Onsdagsbanen/cfd/output/trimmed_3d_v2",
+  "iteration": 668.0,
+  "checks_passed": false,
+  "solver_run": false,
+  "export": "Existing CFD scalar cache; first-order apparent-to-true wind conversion and linearised interpolated ORC X-332 polar; common percentage scale; existing sail-chord weighting. No solver run.",
+  "source_sha256": {
+    "geometry.json": "bce48aeeaf0b9013d1c36d0b9c309a18bad1d0734ed9cbac8b7fd0a7d9d4660a",
+    "yacht.msh": "5d2fbab9e199f198c4594d30aa24e70fd1857ef06eb6e29217624e5871356d75",
+    "restart.dat": "15a5c8996163f5fe0eaaef2a5f80a3a20f57ece436d695950a9cf88f7ca31191"
+  },
   "weighting_metadata": {
-    "source": "cfd/results/v1_5ms/visualizations",
+    "source": "Onsdagsbanen/cfd/output/trimmed_3d_v2/visualizations",
     "solver_run": false,
     "geometry": {
       "geometry_version": 4,
@@ -71,36 +78,38 @@
           0.0,
           3.7,
           10.5,
-          12.0
+          12.1251296445924
         ],
         [
           3.4,
           2.8,
           8.5,
-          20.0
+          23.32070050007657
         ]
       ],
       "sail_shapes": [
         {
           "name": "main",
-          "camber": 0.08,
+          "camber": 0.12,
           "thickness_ratio": 0.001,
-          "twist_deg": 6.0,
-          "trim_height_m": 4.0,
-          "head_luff_x_m": 0.0
+          "twist_deg": 2.0,
+          "trim_height_m": 1.15,
+          "head_luff_x_m": 0.0,
+          "draft_position": 0.45
         },
         {
           "name": "jib",
-          "camber": 0.08,
+          "camber": 0.12,
           "thickness_ratio": 0.001,
-          "twist_deg": 8.0,
-          "trim_height_m": 4.0,
-          "head_luff_x_m": 0.5
+          "twist_deg": 2.0,
+          "trim_height_m": 1.15,
+          "head_luff_x_m": 0.5,
+          "draft_position": 0.45
         }
       ],
       "model": "Original idealised smooth thin sails; cubic CAD splines; thickness scales with chord"
     },
-    "formula": "integral F(x,y,z)*(c_main(z)+c_jib(z)) dz / integral (c_main(z)+c_jib(z)) dz",
+    "formula": "100/V0 * (dV/dU * delta_true_wind_knots - dV/dalpha * true_header_deg), averaged with the existing sail-chord weights",
     "averaged_quantity": "The displayed VMG score of each layer, before color mapping; not velocity vectors or RGB colors",
     "height_range_m": [
       1.15,
@@ -115,12 +124,16 @@
     },
     "weighted_mean_height_m": 4.521615814353244,
     "calibration": {
-      "minimum": -0.5679661054387062,
-      "maximum": 0.5679661054387062,
-      "white_band": 0.00874730021598272,
-      "speed_offset_m_s": -0.29342032002053653,
-      "angle_offset_deg": 1.7248451458995746,
-      "goodness_offset_knots": -0.1597444374947603
+      "minimum": -25.0,
+      "maximum": 25.0,
+      "white_band": 0.25,
+      "contour_magnitudes": [
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        20.0
+      ]
     },
     "palette": [
       [
@@ -128,19 +141,19 @@
         "#67001f"
       ],
       [
-        0.24614972613144487,
+        0.2475,
         "#ef8a62"
       ],
       [
-        0.49229945226288974,
+        0.495,
         "#ffffff"
       ],
       [
-        0.5077005477371103,
+        0.505,
         "#ffffff"
       ],
       [
-        0.7538502738685551,
+        0.7525,
         "#67a9cf"
       ],
       [
@@ -148,15 +161,209 @@
         "#053061"
       ]
     ],
-    "centering": "No new median subtracted; average of the viewer's height-centered layer values",
+    "centering": "Uses the inherited centred apparent-speed and direction perturbations. Convert their first-order Cartesian perturbation to true wind before applying polar derivatives. No subsequent recentering.",
     "missing_data": "Mask columns with any missing active height weight; no zero filling or redistribution",
     "sail_outline_reference_height_m": 4.0,
     "true_wind_angle_deg": 41.0,
-    "iteration": 592.0,
+    "iteration": 668.0,
     "checks_passed": false,
     "source_sha256": {
-      "wind_3d.json": "07cb6c832ed83c789db410884f22d1a937081a06978ee263d2482761c92e8de5",
-      "wind_3d.npz": "3906f36ca4d558b689582df43a448b31498d86ac5246f9852b80187e16fd2757"
+      "wind_3d.json": "787e16fe741be946656c8de217ae6ba08102dce602ac497b27c543be42edf93a",
+      "wind_3d.npz": "1a321ae14e28b1e9d1772cc187935c3fb2d9830c20affd9107354165d4202bfc"
+    },
+    "display_units": "percent",
+    "contour_step": 2.0,
+    "linearisation": {
+      "true_wind_knots": 9.719222462203023,
+      "true_wind_angle_deg": 41.0,
+      "boat_speed_knots": 5.8840291475238145,
+      "vmg_knots": 4.440733167946253,
+      "d_boat_speed_d_tws": 0.3501464374839891,
+      "d_boat_speed_d_twa": 0.057175437796264106,
+      "percent_per_true_wind_knot": 5.950793728330558,
+      "percent_per_true_header_degree": -0.9717055501046479,
+      "course_assumption": "Hold the original course; interpolate polar boat speed at local TWS/TWA. VMG is projected toward the original upwind direction. The fixed cosine cancels from the percentage ratio.",
+      "interpolation": "Linear in true wind at each tabulated row, then linear in angle including the wind-interpolated beat point",
+      "derivative_step_wind_knots": 0.001,
+      "derivative_step_angle_deg": 0.001,
+      "polar": {
+        "class": "X-332",
+        "boat": "XPLORER",
+        "sail_number": "SWE 16532",
+        "certificate": "16532",
+        "orc_reference": "SWE20190353",
+        "issued": "2019-08-06",
+        "vpp_version": "2019 1.01",
+        "source_url": "https://matbrev.svensksegling.se/Files/ORCPdf/9bf397be-6679-4a24-94c9-f6c397e8d9b1.pdf",
+        "source_page": 1,
+        "data_note": "Transcribed from the certificate's velocity prediction table. Boat speeds and beat VMG are the printed rounded values, in knots; angles are degrees. These are VPP predictions for this certificate, not measurements or a class-wide polar.",
+        "true_wind_knots": [
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          20
+        ],
+        "beat_angle_deg": [
+          42.6,
+          41.2,
+          40.8,
+          39.4,
+          38.8,
+          38.7,
+          38.5
+        ],
+        "beat_vmg_knots": [
+          3.31,
+          3.98,
+          4.52,
+          4.82,
+          4.92,
+          4.96,
+          5.03
+        ],
+        "true_wind_angle_deg": [
+          52,
+          60,
+          75,
+          90,
+          110,
+          120,
+          135,
+          150
+        ],
+        "boat_speed_knots": [
+          [
+            5.06,
+            5.98,
+            6.6,
+            6.87,
+            6.97,
+            7.02,
+            7.08
+          ],
+          [
+            5.36,
+            6.27,
+            6.79,
+            7.04,
+            7.16,
+            7.22,
+            7.27
+          ],
+          [
+            5.59,
+            6.49,
+            6.93,
+            7.2,
+            7.4,
+            7.55,
+            7.67
+          ],
+          [
+            5.52,
+            6.53,
+            7.05,
+            7.3,
+            7.49,
+            7.75,
+            8.15
+          ],
+          [
+            5.51,
+            6.6,
+            7.13,
+            7.5,
+            7.88,
+            8.16,
+            8.54
+          ],
+          [
+            5.33,
+            6.45,
+            7.04,
+            7.42,
+            7.83,
+            8.25,
+            8.9
+          ],
+          [
+            4.81,
+            5.89,
+            6.71,
+            7.15,
+            7.51,
+            7.93,
+            8.85
+          ],
+          [
+            4.07,
+            5.12,
+            6.03,
+            6.74,
+            7.15,
+            7.49,
+            8.28
+          ]
+        ]
+      }
     }
+  },
+  "figures": {
+    "combined.svg": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "4ab0cc4794c71ba77bc59ccbf6208f9512b7e094980e061a4e85879f9e70ada7"
+    },
+    "speed.svg": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "dec38974515f6cbf3778740d34321031b7781117e80fae32cfb75c8161b084a4"
+    },
+    "direction.svg": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "781c0e56abe89f300d6fd74387e90ca91b18079c879e0bde810ba30b0f0413a5"
+    },
+    "boat-model.png": {
+      "dataset": "trimmed_3d_v2",
+      "sha256": "f734aec4f4b2be757888c0027c17f07ad18413297b31f8ca1628cd31746af717",
+      "capture": "boat-model.capture.json"
+    },
+    "sail-flow.png": {
+      "dataset": "trimmed_3d_v2",
+      "sha256": "c7bad05744bbfde76fdc4c59e097519d65c4273f697e006a37ef0b1adabf7fce",
+      "capture": "sail-flow.capture.json"
+    },
+    "wind-3d.png": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "d869c790e8535c7dc4fab29040165ddbd7e9cfe8693bf952dbad17a6e3f6ea49",
+      "capture": "wind-3d.capture.json"
+    },
+    "combined.png": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "20ac198a0064e27f36daceb509e2e98babb6208c1e1f1e878936f4e09fe22de0"
+    },
+    "speed.png": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "7d650fe02e0f042b6768ac672812529fb59753f68b5c57942a1677d7cdce8682"
+    },
+    "direction.png": {
+      "dataset": "trimmed_3d_v2",
+      "units": "percent",
+      "sha256": "43e17c9568e85e6c8f9a747379a1bca9629adc42c0fa9c976fdd82bcfde82134"
+    }
+  },
+  "display_units": "percent",
+  "polar_source": {
+    "data": "x332-orc-polar.json",
+    "source_url": "https://matbrev.svensksegling.se/Files/ORCPdf/9bf397be-6679-4a24-94c9-f6c397e8d9b1.pdf",
+    "sha256": "cd30ff5a0134ea0019e3e5b31a1b253efb708a21e5b90ada444264e3fd6bad7a",
+    "linearisation": "orc-linearisation.json"
   }
 }

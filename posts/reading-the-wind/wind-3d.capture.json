@@ -1,14 +1,10 @@
 {
-  "source": "Onsdagsbanen/cfd/results/v1_5ms/visualizations/wind_3d.html",
+  "dataset": "C:\\Users\\E1536993\\Git-projects\\ob\\cfd\\output\\trimmed_3d_v2",
+  "iteration": 668,
+  "display_units": "percent",
   "viewport": {
-    "width": 1920,
-    "height": 906
-  },
-  "bounds": {
-    "x": 0,
-    "y": 112,
-    "width": 1920,
-    "height": 731
+    "width": 1912,
+    "height": 948
   },
   "camera": {
     "up": {
@@ -17,70 +13,231 @@
       "z": 1
     },
     "center": {
-      "x": 0.782151823835072,
-      "y": -0.8167130248261893,
-      "z": -0.0016640861397974691
+      "x": 0.4494821129020327,
+      "y": 0.4140722441490042,
+      "z": 0.0756584068273384
     },
     "eye": {
-      "x": 0.07594417635431605,
-      "y": -2.14748101638984,
-      "z": 0.6485876430154147
+      "x": 1.7486095816657796,
+      "y": 1.2892781343034394,
+      "z": 0.564312138771016
     },
     "projection": {
       "type": "orthographic"
     }
   },
-  "sceneDomain": {
+  "axisRanges": {
     "x": [
-      0,
-      1
+      -50,
+      15
     ],
     "y": [
+      -30,
+      40
+    ],
+    "z": [
       0,
-      1
+      15.5
     ]
-  },
-  "plotSize": {
-    "l": 0,
-    "r": 75,
-    "t": 20,
-    "b": 10,
-    "p": 0,
-    "w": 1845,
-    "h": 701
   },
   "viewerState": {
     "field": "goodness",
     "mode": "volume",
-    "height": 4.5,
-    "exactHeight": false
+    "height": 4,
+    "exactHeight": true
   },
-  "opacity": "0.08",
-  "axisRanges": {
-    "x": [
-      -16,
-      9
-    ],
-    "y": [
-      -8,
-      16
-    ],
-    "z": [
-      0,
-      14
+  "opacity": "0.09",
+  "calibration": {
+    "minimum": -25,
+    "maximum": 25,
+    "palette": [
+      [
+        0,
+        "#67001f"
+      ],
+      [
+        0.2475,
+        "#ef8a62"
+      ],
+      [
+        0.495,
+        "#ffffff"
+      ],
+      [
+        0.505,
+        "#ffffff"
+      ],
+      [
+        0.7525,
+        "#67a9cf"
+      ],
+      [
+        1,
+        "#053061"
+      ]
     ]
   },
-  "capture": "User-framed browser plot, 2x scale; manually cropped for publication.",
-  "manual_crop_pixels": {
-    "left": 0,
-    "top": 40,
-    "right": 2580,
-    "bottom": 1462
+  "linearisation": {
+    "true_wind_knots": 9.719222462203023,
+    "true_wind_angle_deg": 41,
+    "boat_speed_knots": 5.8840291475238145,
+    "vmg_knots": 4.440733167946253,
+    "d_boat_speed_d_tws": 0.3501464374839891,
+    "d_boat_speed_d_twa": 0.057175437796264106,
+    "percent_per_true_wind_knot": 5.950793728330558,
+    "percent_per_true_header_degree": -0.9717055501046479,
+    "course_assumption": "Hold the original course; interpolate polar boat speed at local TWS/TWA. VMG is projected toward the original upwind direction. The fixed cosine cancels from the percentage ratio.",
+    "interpolation": "Linear in true wind at each tabulated row, then linear in angle including the wind-interpolated beat point",
+    "derivative_step_wind_knots": 0.001,
+    "derivative_step_angle_deg": 0.001,
+    "polar": {
+      "class": "X-332",
+      "boat": "XPLORER",
+      "sail_number": "SWE 16532",
+      "certificate": "16532",
+      "orc_reference": "SWE20190353",
+      "issued": "2019-08-06",
+      "vpp_version": "2019 1.01",
+      "source_url": "https://matbrev.svensksegling.se/Files/ORCPdf/9bf397be-6679-4a24-94c9-f6c397e8d9b1.pdf",
+      "source_page": 1,
+      "data_note": "Transcribed from the certificate's velocity prediction table. Boat speeds and beat VMG are the printed rounded values, in knots; angles are degrees. These are VPP predictions for this certificate, not measurements or a class-wide polar.",
+      "true_wind_knots": [
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        20
+      ],
+      "beat_angle_deg": [
+        42.6,
+        41.2,
+        40.8,
+        39.4,
+        38.8,
+        38.7,
+        38.5
+      ],
+      "beat_vmg_knots": [
+        3.31,
+        3.98,
+        4.52,
+        4.82,
+        4.92,
+        4.96,
+        5.03
+      ],
+      "true_wind_angle_deg": [
+        52,
+        60,
+        75,
+        90,
+        110,
+        120,
+        135,
+        150
+      ],
+      "boat_speed_knots": [
+        [
+          5.06,
+          5.98,
+          6.6,
+          6.87,
+          6.97,
+          7.02,
+          7.08
+        ],
+        [
+          5.36,
+          6.27,
+          6.79,
+          7.04,
+          7.16,
+          7.22,
+          7.27
+        ],
+        [
+          5.59,
+          6.49,
+          6.93,
+          7.2,
+          7.4,
+          7.55,
+          7.67
+        ],
+        [
+          5.52,
+          6.53,
+          7.05,
+          7.3,
+          7.49,
+          7.75,
+          8.15
+        ],
+        [
+          5.51,
+          6.6,
+          7.13,
+          7.5,
+          7.88,
+          8.16,
+          8.54
+        ],
+        [
+          5.33,
+          6.45,
+          7.04,
+          7.42,
+          7.83,
+          8.25,
+          8.9
+        ],
+        [
+          4.81,
+          5.89,
+          6.71,
+          7.15,
+          7.51,
+          7.93,
+          8.85
+        ],
+        [
+          4.07,
+          5.12,
+          6.03,
+          6.74,
+          7.15,
+          7.49,
+          8.28
+        ]
+      ]
+    }
   },
-  "uncropped_size_pixels": [
-    3840,
-    1462
+  "plotBounds": {
+    "x": 0,
+    "y": 111,
+    "width": 1912,
+    "height": 773
+  },
+  "sceneBounds": {
+    "x": 0,
+    "y": 131,
+    "width": 1837,
+    "height": 743
+  },
+  "image_size_pixels": [
+    1912,
+    743
   ],
+  "source": "Onsdagsbanen/cfd/output/trimmed_3d_v2/orc_percent/wind-orc-percent.html",
   "image": "wind-3d.png",
-  "crop_note": "Removed toolbar, empty space and colour bar; the caption explains red/blue qualitatively. Camera and displayed field unchanged."
+  "bounds": {
+    "x": 0,
+    "y": 131,
+    "width": 1912,
+    "height": 743
+  },
+  "capture": "Author-framed browser plot, including percentage colour bar; camera, viewport, field and opacity unchanged.",
+  "sha256": "d869c790e8535c7dc4fab29040165ddbd7e9cfe8693bf952dbad17a6e3f6ea49"
 }
