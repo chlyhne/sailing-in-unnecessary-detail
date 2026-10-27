@@ -2,8 +2,8 @@
 title: "Sailing in Unnecessary Detail"
 pagetitle: "Sailing in Unnecessary Detail"
 body-classes: home
+filters:
+  - _filters/latest-post.lua
 ---
 
-A blog where I analyze sailing in unnecessary detail, in order to learn about it, but also to share my passion.
-
-I use simulations, figures and calculations to explore questions from sailing and the aim is to connect analysis with situations you recognise on the water, and to explain what the calculations can tell us.
+Welcome to my blog about the nerdy side of sailing. I will share my analysis of different sailing topics where I use simulation and data analysis to come up with interesting insights. Doing these deep dives are my way of studying a topic for my own improvement on the water. I just happen to love writing it down in a way that lets others share the pleasure of finding things out. There will also be posts about my personal experiences with sailing from regattas such as Silverrudder. I guess you can call it a mix of dry and wet sailing.

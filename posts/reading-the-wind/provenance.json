@@ -4,7 +4,7 @@
   "iteration": 668.0,
   "checks_passed": false,
   "solver_run": false,
-  "export": "Existing CFD scalar cache; first-order apparent-to-true wind conversion and linearised interpolated ORC X-332 polar; common percentage scale; existing sail-chord weighting. No solver run.",
+  "export": "Existing CFD scalar cache with sail-chord weighting. Combined map: linearised ORC VMG percentage. Separate maps: first-order \u0394TWS in knots and \u0394TWA in degrees, recovered by inverting the linear component scales. No solver run.",
   "source_sha256": {
     "geometry.json": "bce48aeeaf0b9013d1c36d0b9c309a18bad1d0734ed9cbac8b7fd0a7d9d4660a",
     "yacht.msh": "5d2fbab9e199f198c4594d30aa24e70fd1857ef06eb6e29217624e5871356d75",
@@ -319,13 +319,29 @@
     },
     "speed.svg": {
       "dataset": "trimmed_3d_v2",
-      "units": "percent",
-      "sha256": "dec38974515f6cbf3778740d34321031b7781117e80fae32cfb75c8161b084a4"
+      "units": "knots",
+      "quantity": "delta_TWS",
+      "sha256": "6c70314c1f6320cd4e566bf8c08229c2c4073deae35909d999fb46855df8ff4c",
+      "source_percent_svg_sha256": "1b824fd3ffb24ef910e60f4b42abc805024fa4222c5bd165004da4d4c9c0a313",
+      "percent_per_unit": 5.950793728330558,
+      "range": [
+        -4.201120244007101,
+        4.201120244007101
+      ],
+      "conversion": "Invert the plotted linear percent component; preserve sail-height weighting, reference wind, colour mesh and contours."
     },
     "direction.svg": {
       "dataset": "trimmed_3d_v2",
-      "units": "percent",
-      "sha256": "781c0e56abe89f300d6fd74387e90ca91b18079c879e0bde810ba30b0f0413a5"
+      "units": "degrees",
+      "quantity": "delta_TWA",
+      "sha256": "e69346d56c7a75a4dc8d23f70a793231200069b53c2d5e1bc03641050803d72a",
+      "source_percent_svg_sha256": "f548a9397493d448153183e896f9772bf98b02c06c3b00743686cd74272a872b",
+      "percent_per_unit": 0.9717055501046479,
+      "range": [
+        -25.727958430727934,
+        25.727958430727934
+      ],
+      "conversion": "Invert the plotted linear percent component; preserve sail-height weighting, reference wind, colour mesh and contours."
     },
     "boat-model.png": {
       "dataset": "trimmed_3d_v2",
@@ -350,20 +366,263 @@
     },
     "speed.png": {
       "dataset": "trimmed_3d_v2",
-      "units": "percent",
-      "sha256": "7d650fe02e0f042b6768ac672812529fb59753f68b5c57942a1677d7cdce8682"
+      "units": "knots",
+      "quantity": "delta_TWS",
+      "sha256": "9192e1b7a74c50007e885d4547c7e4e1e53dac72558f1fea4fe89c14055fd845",
+      "source_percent_svg_sha256": "1b824fd3ffb24ef910e60f4b42abc805024fa4222c5bd165004da4d4c9c0a313",
+      "percent_per_unit": 5.950793728330558,
+      "range": [
+        -4.201120244007101,
+        4.201120244007101
+      ],
+      "conversion": "Invert the plotted linear percent component; preserve sail-height weighting, reference wind, colour mesh and contours."
     },
     "direction.png": {
       "dataset": "trimmed_3d_v2",
-      "units": "percent",
-      "sha256": "43e17c9568e85e6c8f9a747379a1bca9629adc42c0fa9c976fdd82bcfde82134"
+      "units": "degrees",
+      "quantity": "delta_TWA",
+      "sha256": "a3713df51091b4a629b1a086162ca6f48b8e1dd836743b271324465a52c200cd",
+      "source_percent_svg_sha256": "f548a9397493d448153183e896f9772bf98b02c06c3b00743686cd74272a872b",
+      "percent_per_unit": 0.9717055501046479,
+      "range": [
+        -25.727958430727934,
+        25.727958430727934
+      ],
+      "conversion": "Invert the plotted linear percent component; preserve sail-height weighting, reference wind, colour mesh and contours."
+    },
+    "trim-2d-closeup.svg": {
+      "dataset": "selected_trim_2d",
+      "model": "2D steady INC_RANS SST V1994m",
+      "units": "Pa",
+      "quantity": "gauge_pressure",
+      "height_m": 4.521615814353244,
+      "sha256": "de592f9579744f4bb8b2496189d15e88bda23cfc42d4b80a503d942e76f2e9f8",
+      "source_case": "cfd/cases/blog_trimmed_reference_v2"
+    },
+    "trim-2d-closeup.png": {
+      "dataset": "selected_trim_2d",
+      "model": "2D steady INC_RANS SST V1994m",
+      "units": "Pa",
+      "quantity": "gauge_pressure",
+      "height_m": 4.521615814353244,
+      "sha256": "f25afca47cae77b13d6e5d23ee1f81f71d8efcf035f3b0afdde8ab4a1effae3c",
+      "source_case": "cfd/cases/blog_trimmed_reference_v2"
     }
   },
-  "display_units": "percent",
+  "display_units": "mixed",
   "polar_source": {
     "data": "x332-orc-polar.json",
     "source_url": "https://matbrev.svensksegling.se/Files/ORCPdf/9bf397be-6679-4a24-94c9-f6c397e8d9b1.pdf",
     "sha256": "cd30ff5a0134ea0019e3e5b31a1b253efb708a21e5b90ada444264e3fd6bad7a",
     "linearisation": "orc-linearisation.json"
+  },
+  "figure_units": {
+    "combined": "percent",
+    "speed": "knots",
+    "direction": "degrees"
+  },
+  "trim_2d_closeup": {
+    "solver_run": true,
+    "source_case": "cfd/cases/blog_trimmed_reference_v2",
+    "selection": "Reproduced the saved trimmed_reference_v2 candidate; no new optimisation.",
+    "height_m": 4.521615814353244,
+    "main_foot_angle_deg": 12.1251296445924,
+    "jib_foot_angle_deg": 23.32070050007657,
+    "checks_passed": true,
+    "report": {
+      "model": "2D steady INC_RANS SST V1994m",
+      "height_m": 4.521615814353244,
+      "convergence": {
+        "criteria": {
+          "flow_rms_log10_max": -6.0,
+          "turbulence_residual_reduction_orders": 6.0,
+          "turbulence_absolute_rms_log10_max": {
+            "rms[k]": -11.0,
+            "rms[w]": -5.0
+          },
+          "turbulence_rule": "Each equation must satisfy relative reduction OR its absolute tolerance",
+          "force_window": 200,
+          "force_relative_range_max": 0.001,
+          "force_normalization_floor": 0.01
+        },
+        "turbulence_residual_reference_log10": {
+          "rms[k]": -4.661759488,
+          "rms[w]": 4.68412186
+        },
+        "turbulence_relative_residual_log10": {
+          "rms[k]": -6.4514231220000005,
+          "rms[w]": -11.17743551
+        },
+        "turbulence_residual_checks": {
+          "rms[k]": {
+            "relative_passed": true,
+            "absolute_passed": true,
+            "passed": true
+          },
+          "rms[w]": {
+            "relative_passed": true,
+            "absolute_passed": true,
+            "passed": true
+          }
+        },
+        "force_relative_ranges": {
+          "CFx": 3.6614877551402786e-06,
+          "CFy": 3.5730191728021495e-06
+        },
+        "checks": {
+          "flow_rms_below_1e_6": true,
+          "turbulence_residuals_converged": true,
+          "forces_stable_0_1_percent_over_200_iterations": true
+        },
+        "passed": true
+      },
+      "wall_resolution": {
+        "mast": {
+          "p95_yplus": 0.651140075,
+          "max_yplus": 0.6693749,
+          "passed": true
+        },
+        "main": {
+          "p95_yplus": 0.41915803499999993,
+          "max_yplus": 1.481443,
+          "passed": true
+        },
+        "jib": {
+          "p95_yplus": 0.472614525,
+          "max_yplus": 1.673078,
+          "passed": true
+        }
+      },
+      "checks_passed": true,
+      "field_stability": {
+        "before_sha256": "a73e61bc94b91d1273adb34f53603d53cc963b95df35fa143f2e9d166b2c8fb5",
+        "after_sha256": "5477460dcc837d0d3d815b605e30609ff8b78c83794e6309848e3747be49a9a1",
+        "native_iterations": [
+          3300,
+          3499
+        ],
+        "iteration_window": 199,
+        "maximum_changes": {
+          "velocity_vector_m_s": 0.0012465854672347482,
+          "direction_deg": 0.0034472018057758783,
+          "turbulence_percentage_points": 0.001700142670425786
+        },
+        "maximum_change_limits": {
+          "velocity_vector_m_s": 0.01,
+          "direction_deg": 0.1,
+          "turbulence_percentage_points": 0.1
+        },
+        "checks": {
+          "velocity_vector_m_s": true,
+          "direction_deg": true,
+          "turbulence_percentage_points": true
+        },
+        "passed": true,
+        "scope": "All fluid in the displayed viewport; direction excludes near-zero speeds"
+      },
+      "iterations": 3500,
+      "boat_offsets_xy_m": [
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "iterations_scope": "Last solver invocation; restart iterations are not cumulative",
+      "limitations": [
+        "Independent 2D RANS, not a slice extracted from the 3D solution.",
+        "No vertical velocity, tip vortices, spanwise transport, hull or sea boundary.",
+        "Wind shear and sail twist are sampled at the selected height only.",
+        "Forces describe one metre of span, not the complete yacht.",
+        "Mesh independence and agreement with the 3D model have not been established."
+      ]
+    },
+    "forces": {
+      "height_m": 4.521615814353244,
+      "dynamic_pressure_Pa": 32.40445199746212,
+      "force_N_per_m": [
+        87.34605053043794,
+        236.98057111579595
+      ],
+      "bodies": {
+        "mast": {
+          "force_N_per_m": [
+            -5.901770548698738,
+            5.675993613909804
+          ],
+          "pressure_N_per_m": [
+            -5.799627938103457,
+            5.576315267571275
+          ],
+          "friction_N_per_m": [
+            -0.102142610595281,
+            0.09967834633852911
+          ]
+        },
+        "main": {
+          "force_N_per_m": [
+            31.487655502118013,
+            114.78845806025338
+          ],
+          "pressure_N_per_m": [
+            32.000680676222636,
+            114.64392580471481
+          ],
+          "friction_N_per_m": [
+            -0.5130251741046226,
+            0.14453225553856705
+          ],
+          "reverse_wall_shear_length_percent": 1.5276278220100536
+        },
+        "jib": {
+          "force_N_per_m": [
+            61.76016557701867,
+            116.51611944163278
+          ],
+          "pressure_N_per_m": [
+            62.147238537742,
+            116.3305970300635
+          ],
+          "friction_N_per_m": [
+            -0.38707296072332975,
+            0.18552241156927432
+          ],
+          "reverse_wall_shear_length_percent": 2.8993165396442753
+        }
+      },
+      "history_force_N_per_m": [
+        87.35013024147958,
+        236.97802084638087
+      ],
+      "relative_force_integration_error": 1.904953250493046e-05,
+      "force_integration_passed": true,
+      "axes": {
+        "x": "forward",
+        "y": "port"
+      },
+      "reverse_flow_note": "Reverse wall-shear length is a separation indicator, not full separation topology."
+    },
+    "colour_scale": {
+      "minimum": -100.0,
+      "maximum": 100.0,
+      "white_band": 1.0
+    },
+    "colour_quantity": "Static pressure relative to the undisturbed far-field pressure, in Pa; blue is lower, red is higher.",
+    "reference": "SU2 incompressible gauge pressure has zero undisturbed far-field pressure; no spatial median subtracted.",
+    "pressure_conversion": {
+      "formula": "delta_p_Pa = restart_Pressure * rho_ref * velocity_ref**2",
+      "density_kg_m3": 1.225,
+      "pressure_scale_Pa": 64.80890399492424,
+      "maximum_surface_Cp_error": 4.975610785606932e-07,
+      "source": "https://su2code.github.io/docs_v7/Physical-Definition/#initial-state-and-non-dimensionalization"
+    },
+    "arrows": "Interpolated solved horizontal air velocity; not boat motion.",
+    "source_sha256": {
+      "geometry.json": "428dd9a93c914ba256338acd619c4af7f1524c52a88bf85cadcf95784bcae14b",
+      "section_case.json": "c662dec8828bd70ba75e5f9d8982a901a0f10ee8808e930a09cc3c87c126d627",
+      "slice.npz": "01dcf4184e1de969a307264bc3dbfc018de9b8cd30c2c2c63cd12afb2179c499",
+      "restart.dat": "5477460dcc837d0d3d815b605e30609ff8b78c83794e6309848e3747be49a9a1",
+      "yacht.cfg": "9ccb87128252d3c66f0a6f0d9ed379ee0fffea603ab54c7a2c5d61eef7edf96d",
+      "surface.vtk": "c3e4f38370c56146e70621e7edcba03982fbbcb4e488f443898a79dc08dd3a32"
+    }
   }
 }

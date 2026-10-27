@@ -88,6 +88,8 @@ def main():
     provenance['pending_3d_captures'] = {'wind-3d.png': {'status': 'Awaiting author framing of percentage view',
                                                        'current_display_units': 'knots'}}
     (post/'provenance.json').write_text(json.dumps(provenance, indent=2)+'\n', encoding='utf-8')
+    from export_true_wind_maps import export_components
+    export_components(post)
     print(json.dumps({k: v for k, v in coefficients.items() if k!='polar'}, indent=2), flush=True)
     print('Building matching percentage 3D view', flush=True)
     contours, levels = iso_meshes([x, y, z], fields, ref)

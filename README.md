@@ -20,8 +20,11 @@ header. Place its figures alongside it. Use `$...$` for inline mathematics and
 ready to publish. Add a link back to `../../index.qmd` in the post.
 
 Add each published article to the list in `_includes/footer.html`, using the
-existing entry as a template. This one list appears on every page. Keep
-`index.qmd` as the short blog introduction and edit your biography in `about.qmd`.
+existing entry as a template. This one list appears on every page.
+The home page automatically appends the full newest published post below the
+introduction, selected by its `date` (use `YYYY-MM-DD`). Posts with `draft: true`
+are excluded. Keep `index.qmd` as the short blog introduction and edit your
+biography in `about.qmd`.
 
 Build all pages before publishing:
 
@@ -44,11 +47,21 @@ and capture details are saved in the corresponding `*.capture.json` files.
 The SVG colour mesh is rasterised; text, outlines and contours remain vectors.
 Rendering the blog requires no solver, Python environment or CFD data.
 
-The wind-effect maps use a linearisation of an interpolated 2019 ORC X-332
+The combined wind-effect map uses a linearisation of an interpolated 2019 ORC X-332
 polar at 5 m/s true wind and 41 degrees TWA, expressed as a percentage of the
 reference upwind VMG while holding course. The apparent-wind perturbations are
 converted to true-wind perturbations before applying the derivatives. The
 source table and coefficient details are included alongside the article.
+The separate wind maps show ΔTWS in knots and ΔTWA in degrees; the combined
+map keeps the VMG-based percentage scale. Red is less wind or a header; blue
+is more wind or a lift.
+
+To convert existing percentage component SVGs and export matching PNGs
+without the CFD caches (requires Inkscape):
+
+```bash
+python scripts/export_true_wind_maps.py
+```
 
 To regenerate the percentage maps from saved CFD caches:
 
@@ -59,3 +72,22 @@ python scripts/export_orc_maps.py --cfd-root ../ob
 This only post-processes saved scalar fields and starts no simulation. A matching
 3D percentage viewer is written under `cfd/output/trimmed_3d_v2/orc_percent` in
 the CFD repository. Its article screenshot is captured after author framing.
+The exporter also uses Inkscape to save the separate maps in true-wind units.
+
+The sail close-up uses a separate 2D calculation at the saved
+`trimmed_reference_v2` trim and the representative height of 4.52 m. To
+re-export it from an existing, checked solution without running a solver:
+
+```bash
+python scripts/export_trim_closeup.py --cfd-root ../Onsdagsbanen --case ../Onsdagsbanen/cfd/cases/blog_trimmed_reference_v2
+```
+
+Its colours show static pressure relative to the undisturbed wind in pascals:
+blue is lower pressure and red is higher pressure. Arrows show solved air
+velocity. The pressure conversion is checked against SU2's surface pressure
+coefficients. Geometry, numerical checks and source hashes are recorded in
+the article's `provenance.json`.
+
+The lee-bow diagram embeds the unmodified 😎 and 😞 artwork from
+[Twemoji](https://github.com/jdecked/twemoji), by Twitter, Inc. and contributors,
+licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
