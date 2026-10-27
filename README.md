@@ -50,6 +50,16 @@ monthly unique-user estimate. Use **Realtime** to check that data is arriving
 after accepting analytics cookies on the live site. Visitors who decline
 tracking or block the tag will not be included.
 
+## Comments
+
+Every post has a comment form with a name and plain-text comment. Comments
+are stored in the blog's own Cloudflare D1 database through `comments-api/`;
+readers do not need an account or email address. The newest post on the home
+page links to its comment thread. Titles can change without losing comments.
+
+See [comments-api/README.md](comments-api/README.md) for local preview,
+deployment, comment removal and database backups.
+
 ## CFD figures
 
 The first article uses the saved `trimmed_3d_v2` dataset. Its `provenance.json`

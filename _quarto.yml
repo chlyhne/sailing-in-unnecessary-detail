@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - comments.js
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
@@ -21,4 +23,6 @@ format:
     lang: en
     html-math-method: mathml
     include-before-body: _includes/header.html
-    include-after-body: _includes/footer.html
+    include-after-body:
+      - _includes/comments.html
+      - _includes/footer.html

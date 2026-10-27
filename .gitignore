@@ -6,3 +6,8 @@ _site/
 **/*.quarto_ipynb
 __pycache__/
 *.pyc
+node_modules/
+.wrangler/
+.dev.vars
+.env
+comments-api/backups/

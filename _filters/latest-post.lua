@@ -75,6 +75,7 @@ function Pandoc(doc)
     pandoc.Para({pandoc.Span(latest.date, pandoc.Attr("", {"post-meta"}))})
   })
   blocks:extend(article.blocks)
+  blocks:insert(pandoc.Para({pandoc.Link('Join the discussion', permalink .. '#comments')}))
   doc.blocks:insert(pandoc.Div(blocks, pandoc.Attr("latest-post", {"latest-post"})))
   return doc
 end

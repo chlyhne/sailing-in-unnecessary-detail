@@ -171,6 +171,54 @@ blockquote {
 .latest-post h3 { margin-top: 2.75rem; font-size: 1.8rem; }
 .latest-post h4 { font-size: 1.4rem; }
 
+.post-comments {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.post-comments h2 { margin-top: 0; }
+.comment-form { display: grid; gap: .65rem; }
+.comment-form label { font: .85rem/1.5 var(--sans); }
+.comment-form input, .comment-form textarea {
+  width: 100%;
+  min-width: 0;
+  padding: .65rem .8rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--ink);
+  font: 1rem/1.6 var(--sans);
+}
+.comment-form textarea { resize: vertical; }
+.comment-form input:focus-visible, .comment-form textarea:focus-visible,
+.post-comments button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.post-comments button {
+  justify-self: start;
+  padding: .6rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--paper);
+  font: .85rem/1.5 var(--sans);
+  cursor: pointer;
+}
+.post-comments button:hover { background: var(--ink); }
+.post-comments button:disabled { opacity: .65; cursor: wait; }
+.post-comments button[hidden] { display: none; }
+.comment-help, .comment-status {
+  margin: .25rem 0 .5rem;
+  color: var(--muted);
+  font: .8rem/1.6 var(--sans);
+}
+.comment-status:empty { display: none; }
+.comment-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.comment-list { margin-top: 2rem; }
+.reader-comment { padding: 1.25rem 0; border-top: 1px solid var(--rule); }
+.reader-comment header { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; font: .85rem/1.6 var(--sans); }
+.reader-comment strong { min-width: 0; overflow-wrap: anywhere; }
+.reader-comment time { color: var(--muted); font-size: .75rem; }
+.reader-comment p { margin: .75rem 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+
 .site-footer {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,16 @@
+{
+  "name": "sailing-blog-comments",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "wrangler dev --local --ip 127.0.0.1 --port 8787 --var ALLOWED_ORIGINS:http://localhost:4200,http://127.0.0.1:4200 --var RATE_LIMIT_SALT:local-development-only-not-a-production-secret",
+    "deploy": "wrangler deploy",
+    "test": "node --experimental-sqlite --test test/*.test.js"
+  },
+  "devDependencies": {
+    "wrangler": "4.154.0"
+  }
+}
