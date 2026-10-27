@@ -58,6 +58,10 @@ For example, a **0.4-knot lull and a 2° header** contribute about −2.4% and �
 
 This gives us one scale for comparing the wind disturbances. It is a local estimate based on the polar and gives some indication of the interaction between boats here.
 
+But there is another problem here. A lot of the loss on the map comes from the wind direction changing. If you sail for maximum VMG while being lee-bowed, you will fall down on the other boat. And you have to keep clear. That means sailing higher and slower until you are far enough behind to bear away and pass behind him.
+
+Now it is just a matter of time before you enter the death ray of bad air on his lee stern and fall hopelessly behind.
+
 ## Full 3D CFD to simple 2D maps
 
 I used a three-dimensional flow simulation to calculate the steady wind field around the boat.[^solver]
