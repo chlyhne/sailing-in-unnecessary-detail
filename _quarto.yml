@@ -9,6 +9,11 @@ website:
   site-url: https://sailinginunnecessarydetail.com/
   description: "Sailing, flow and the occasional useful equation."
   search: false
+  google-analytics: "G-87VVYGWHG8"
+  cookie-consent:
+    type: express
+    style: simple
+    palette: light
 format:
   html:
     minimal: true

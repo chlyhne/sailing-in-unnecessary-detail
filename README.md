@@ -38,6 +38,18 @@ Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys t
 
 Live site: https://sailinginunnecessarydetail.com/
 
+## Visitor analytics
+
+Google Analytics 4 is configured in `_quarto.yml` with measurement ID
+`G-87VVYGWHG8`. Quarto includes the tag on every page. Tracking starts only
+after the visitor accepts analytics cookies; the footer's **Cookie preferences**
+link lets them change their choice.
+
+In Google Analytics, select a calendar month and use **Total users** for the
+monthly unique-user estimate. Use **Realtime** to check that data is arriving
+after accepting analytics cookies on the live site. Visitors who decline
+tracking or block the tag will not be included.
+
 ## CFD figures
 
 The first article uses the saved `trimmed_3d_v2` dataset. Its `provenance.json`
