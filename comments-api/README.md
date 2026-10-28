@@ -39,17 +39,11 @@ The Worker also needs the `RATE_LIMIT_SALT` secret, set once using
 `npx wrangler secret put RATE_LIMIT_SALT` with a random value of at least 32
 characters. Do not put the secret into the repository or frontend.
 
-The Worker also serves the **Owner preview** of the blog at `/`. The existing
-`npm run dev` and `npm run deploy` commands automatically build its assets,
-using Python 3 and Quarto from the blog setup. Deployment uses your existing
-Wrangler login. The preview reuses `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`
-and owner sessions from comment management; no additional secret is needed.
-Drafts appear as published there, while the public Pages build excludes them.
-All preview assets pass through the same owner authentication as comment
-management, with `run_worker_first = true`. Keep that setting enabled.
-Unauthenticated preview requests go to the management sign-in page; after
-signing in, choose **Preview blog including drafts**. No new OAuth scopes,
-credentials or database tables are needed. Preview readings send no analytics.
+The Worker handles comments and owner sign-in only. Blog pages and draft pages
+are served by GitHub Pages. After signing in, **Back to the blog** carries the
+session expiry in a URL fragment so the blog can remember its owner-view display
+preference. This is not a credential and grants no comment-management access.
+Signing out clears the blog preference when returning to the blog.
 
 Anonymous submissions are validated server-side and use parameterised SQL.
 The API allows one comment per 30 seconds and twenty per hour for each

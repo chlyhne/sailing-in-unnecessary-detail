@@ -19,8 +19,8 @@ header. Place its figures alongside it. Use `$...$` for inline mathematics and
 `$$...$$` for display equations. Set `draft: true` while writing; remove it when
 ready to publish. Add a link back to `../../index.qmd` in the post.
 
-Add each published article to the list in `_includes/header.html`, using the
-existing entry as a template. This one list appears on every page, as a sidebar on desktop and a collapsed Articles menu above the content on phones.
+The article index is generated from post titles and dates. It appears on every
+page, as a sidebar on desktop and a collapsed Articles menu on phones.
 The home page automatically appends the full newest published post below the
 introduction, selected by its `date` (use `YYYY-MM-DD`). Posts with `draft: true`
 are excluded. Keep `index.qmd` as the short blog introduction and edit your
@@ -38,36 +38,26 @@ Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys t
 
 Live site: https://sailinginunnecessarydetail.com/
 
-## Owner preview of drafts
+## Drafts and owner sign-in
 
-The footer's **Owner preview** opens a private copy of the blog on the existing
-comments Worker. Sign in with GitHub as `chlyhne`, then choose **Preview blog
-including drafts**. This uses the same owner session as comment management.
-Signing in to GitHub alone does not sign in to the blog; use this link once.
-The preview shows drafts as ordinary published posts, including the newest
-article on the home page and all posts in the article sidebar.
+There is one site build, hosted on GitHub Pages. Posts with `draft: true` are
+rendered using Quarto's `draft-mode: unlinked`: anyone with a direct URL can
+read them, but they are absent from the ordinary article index and sitemap.
 
-The public GitHub Pages build still excludes `draft: true`. The private build
-checks the owner's permanent GitHub account ID before serving every page,
-image or script. It sends no analytics and uses `private, no-store` responses.
-Draft source flags are never changed in the working tree.
+Use the footer's **Owner sign-in**, sign in with the existing GitHub app as
+`chlyhne`, then select **Back to the blog**. The blog remembers owner view in
+local storage until the login's expiry time. Drafts appear in the article list,
+and the newest draft appears on the home page when newer than published posts.
+The draft banner is hidden in owner view. Signing out returns to the blog and
+clears owner view.
 
-The existing `npm run dev` and `npm run deploy` commands in `comments-api/`
-build the private copy automatically. To build it separately:
+Owner view is a presentation preference, not an access restriction. The browser
+flag can be changed manually. Comment deletion still requires a verified owner
+session and CSRF token on the Worker. No new credentials are needed.
 
-```sh
-python3 scripts/build_owner_preview.py
-```
-
-The preview reuses the comment-management GitHub app, its existing Worker
-secrets and the same owner sessions. No additional secret is needed. Deploy it
-alongside comments using `npm run deploy` in `comments-api/`, with the existing
-Wrangler login. Deploy the Worker again when draft content changes.
-The publish workflow checks the private build without deploying it; pushing
-to `main` still deploys the public blog to GitHub Pages as before.
-
-Removing `draft: true` makes the post public on the next deployment. Add it to
-the public article list in `_includes/header.html` at that point.
+Draft changes use the same `git push origin main` deployment as published posts.
+Remove `draft: true` to publish a post; the article index updates automatically.
+The comments Worker serves the API and login only and has no site assets.
 
 ## Visitor analytics
 

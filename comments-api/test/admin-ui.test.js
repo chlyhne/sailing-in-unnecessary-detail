@@ -15,16 +15,17 @@ function browser(responses, confirmation = false) {
     replaceChildren() { this.children = []; }
     remove() { this.parent.children = this.parent.children.filter(child => child !== this); }
   }
-  const elements = Object.fromEntries(['status', 'login', 'logout', 'comments', 'more'].map(id => [id, new Element()]));
+  const elements = Object.fromEntries(['status', 'login', 'logout', 'comments', 'more', 'blog'].map(id => [id, new Element()]));
   const requests = [];
   const confirmations = [];
+  const location = { reload() {} };
   vm.runInNewContext(ADMIN_JS, {
     document: { querySelector: selector => elements[selector.slice(1)], createElement: () => new Element() },
     fetch: async (path, options) => { requests.push({ path, options }); return responses.shift(); },
     confirm: message => { confirmations.push(message); return confirmation; },
-    location: { reload() {} }, URL,
+    location, URL,
   });
-  return { elements, requests, confirmations };
+  return { elements, requests, confirmations, location };
 }
 const flush = async () => { await setImmediate(); await setImmediate(); };
 const comment = { id: 7, name: '<img onerror=alert(1)>', body: '<script>evil</script>',
@@ -65,4 +66,19 @@ test('confirmed deletion uses CSRF and removes the comment only after success', 
   assert.equal(requests[2].options.headers['X-CSRF-Token'], 'csrf-token');
   assert.equal(elements.comments.children.length, 0);
   assert.equal(elements.status.textContent, 'Comment deleted.');
+});
+
+test('return to the blog enables owner view until session expiry and sign-out clears it', async () => {
+  const expiresAt = Date.now() + 100000;
+  const { elements, requests, location } = browser([
+    Response.json({ csrf: 'csrf-token', expiresAt }),
+    Response.json({ comments: [], nextCursor: null }),
+    Response.json({ ok: true }),
+  ]);
+  await flush();
+  assert.equal(elements.blog.href, 'https://sailinginunnecessarydetail.com/#owner=' + expiresAt);
+  await elements.logout.handlers.click();
+  assert.equal(requests[2].path, '/admin/logout');
+  assert.equal(requests[2].options.headers['X-CSRF-Token'], 'csrf-token');
+  assert.equal(location.href, 'https://sailinginunnecessarydetail.com/#owner=0');
 });

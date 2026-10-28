@@ -5,6 +5,7 @@ project:
     - comments.js
     - navigation.js
     - article-analytics.js
+    - owner-view.js
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
@@ -13,6 +14,7 @@ website:
   site-url: https://sailinginunnecessarydetail.com/
   description: "Sailing, flow and the occasional useful equation."
   search: false
+  draft-mode: unlinked
   google-analytics: "G-87VVYGWHG8"
   cookie-consent:
     type: express
@@ -24,7 +26,8 @@ format:
     css: styles.css
     lang: en
     html-math-method: mathml
-    include-before-body: _includes/header.html
     include-after-body:
       - _includes/comments.html
       - _includes/footer.html
+filters:
+  - _filters/posts.lua

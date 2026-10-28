@@ -6,9 +6,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "predev": "python3 ../scripts/build_owner_preview.py",
     "dev": "wrangler dev --local --ip 127.0.0.1 --port 8787 --var ALLOWED_ORIGINS:http://localhost:4200,http://127.0.0.1:4200 --var RATE_LIMIT_SALT:local-development-only-not-a-production-secret",
-    "predeploy": "python3 ../scripts/build_owner_preview.py",
     "deploy": "wrangler deploy",
     "test": "node --experimental-sqlite --test test/*.test.js"
   },

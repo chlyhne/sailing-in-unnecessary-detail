@@ -10,6 +10,9 @@
 
 * { box-sizing: border-box; }
 
+[hidden] { display: none !important; }
+html[data-owner-view] #quarto-draft-alert { display: none; }
+
 html { background: var(--paper); }
 
 body {

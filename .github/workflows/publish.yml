@@ -30,19 +30,16 @@ jobs:
       - name: Deploy
         id: deploy
         uses: actions/deploy-pages@v4
-  owner-preview:
+  check-comments:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: quarto-dev/quarto-actions/setup@v2
-        with:
-          version: '1.8.27'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build owner preview
-        run: python3 scripts/build_owner_preview.py
-      - name: Check comments and owner preview
+      - name: Check browser behavior
+        run: node --test test/*.test.cjs
+      - name: Check comments
         working-directory: comments-api
         run: |
           npm ci
