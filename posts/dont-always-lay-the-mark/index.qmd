@@ -48,7 +48,7 @@ Changing the mark direction within this sector changes how long each mode is use
 
 Here the mark is at the crossover, **115.49° TWA**, where both sails give **8.28 knots** directly toward it. For these polars, this is the worst direct-sailing case within the bridge sector. Switching sails while staying on that heading gives no improvement. We use the gennaker for the direct boat.
 
-Sailing between the modes gets us to the mark **50 seconds sooner**, despite sailing a little farther.
+Sailing between the modes cuts the sailing time by **about 12%**, despite sailing a little farther.
 
 ## Two boats from A to B
 
