@@ -2,15 +2,16 @@
   "source_section": "Sail changes and sailing modes",
   "source_files": {
     "../../random simuleringer/sailing_tactics_note.tex": "7eade678cb5dc13f7a5a4d0663c1c11bf4f6a335af77e3c640919d7e0d1fa0e4",
-    "../../random simuleringer/scripts/sail_change.py": "fa273321bfa719cd05da45eac9494e35dac40b64be8997d33acd9efa29f8a9de",
+    "../../random simuleringer/scripts/sail_change.py": "8a20c5e063d22afb6005e29073c65d5e37ec425a4dd2c2ad9c9b2f634a0d1062",
     "../../random simuleringer/plots/sail_change_between_sails.pdf": "c8a88cbe38b968c49ac4876b6225740af7b41f51ef22ad9cec308aed0a3ffc36",
     "../../random simuleringer/plots/sail_change_crossover_leg.pdf": "8cdefc6c4752b22c57952e0d7b8baaec66af00318a346b21cd9c12747fcb92f4",
-    "../../random simuleringer/plots/sail_change_crossover_numbers.json": "439e8208fd15fa7dfb913349d2a52786475d3d552c8fdf515f33861177e42258"
+    "../../random simuleringer/plots/sail_change_crossover_numbers.json": "439e8208fd15fa7dfb913349d2a52786475d3d552c8fdf515f33861177e42258",
+    "../../random simuleringer/plots/sail_change_crossover_intro.pdf": "0da4d4c3b64af3797d1c5b150742fd64cb3edf61fdc639e1bb4af594065359b6"
   },
   "figures": {
     "sail-change-between-sails.svg": {
       "source": "../../random simuleringer/plots/sail_change_between_sails.pdf",
-      "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for both plots.",
+      "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for all plots.",
       "conversion": "pdftocairo -svg sail_change_between_sails.pdf sail-change-between-sails.svg",
       "sha256": "dbeb15654b5650328dbbf9418205c146222552bd09c9a56cfa94949b62ee0f31",
       "transparent_background": true
@@ -21,9 +22,16 @@
       "transparent_background": true,
       "generator": "See README.md#sail-mode-figures; crossover_leg uses gennaker as the direct baseline.",
       "sha256": "870e081c18f2c2cd14961013b86a6aac6cdfd145e4daf54dd7e3319989c8f073"
+    },
+    "sail-change-crossover-intro.svg": {
+      "source": "../../random simuleringer/plots/sail_change_crossover_intro.pdf",
+      "generator": "sail_change.draw_crossover_intro(sails), with savefig.transparent enabled",
+      "conversion": "pdftocairo -svg sail_change_crossover_intro.pdf sail-change-crossover-intro.svg",
+      "transparent_background": true,
+      "sha256": "5e146bf11495892ce6a876dccef12c1bbbde2b2a935512b9dc7dabf822c7b4b3"
     }
   },
-  "adaptation": "The blog uses a separate one-leg crossover example from the same sail polars and plotting code. The note retains its original default plots and numerical example. Both web figures have transparent backgrounds.",
+  "adaptation": "The blog uses a separate one-leg crossover example from the same sail polars and plotting code. The note retains its original default plots and numerical example. All web figures have transparent backgrounds. The introductory polar shows only the two sails and their crossover before introducing the bridge.",
   "example": {
     "course_deg": 115.48612359761422,
     "direct_sail": "gennaker",

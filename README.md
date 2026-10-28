@@ -189,6 +189,7 @@ import sail_change as figures
 figures.plt.rcParams['savefig.transparent'] = True
 sails, _ = figures.steady_example()
 leg = figures.crossover_leg(sails)
+figures.draw_crossover_intro(sails)
 figures.draw_construction(sails, course=leg['bearing'])
 figures.draw_course(leg)
 PY
@@ -197,6 +198,7 @@ PY
 From the blog root, export the web figures:
 
 ```sh
+pdftocairo -svg '../../random simuleringer/plots/sail_change_crossover_intro.pdf' posts/dont-always-lay-the-mark/sail-change-crossover-intro.svg
 pdftocairo -svg '../../random simuleringer/plots/sail_change_between_sails.pdf' posts/dont-always-lay-the-mark/sail-change-between-sails.svg
 pdftocairo -svg '../../random simuleringer/plots/sail_change_crossover_leg.pdf' posts/dont-always-lay-the-mark/sail-change-crossover-leg.svg
 ```
