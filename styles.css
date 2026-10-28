@@ -138,6 +138,11 @@ p { margin: 1.25rem 0; }
 img, svg { max-width: 100%; height: auto; }
 figure { margin: 2.5rem 0; }
 figure img { display: block; width: 100%; background: #fff; }
+.compact-figure img, img.compact-figure {
+  width: auto;
+  max-height: min(38rem, 70vh);
+  margin-inline: auto;
+}
 figcaption {
   max-width: 43rem;
   margin: .85rem auto 0;

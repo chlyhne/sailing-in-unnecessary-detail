@@ -17,7 +17,7 @@ Across a dent, we can combine two modes and reach the mark sooner than sailing d
 
 The figure below uses two fictive sail polars in the same steady 20-knot wind. Blue is the jib and brown is the gennaker. Angle gives TWA; distance from the origin gives boat speed in knots.
 
-![The red bridge A joins gennaker mode G and jib mode J. The purple bridge B joins two modes under the same gennaker. The marked radial gaps show the gains over sailing directly. [Open full size](sail-change-bridge.svg).](sail-change-bridge.svg){fig-alt="Overlapping blue jib and brown gennaker polars. A red straight bridge joins J at 94.54 degrees TWA to G at 122 degrees. Its intersection with the mark-direction ray, P A, is 0.57 knots beyond the direct-course polar. A purple bridge joins H and L on the gennaker curve."}
+![The red bridge A joins gennaker mode G and jib mode J. The purple bridge B joins two modes under the same gennaker. The marked radial gaps show the gains over sailing directly. [Open full size](sail-change-bridge.svg).](sail-change-bridge.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. A red straight bridge joins J at 94.54 degrees TWA to G at 122 degrees. Its intersection with the mark-direction ray, P A, is 0.57 knots beyond the direct-course polar. A purple bridge joins H and L on the gennaker curve."}
 
 A straight bridge across a dent represents the average velocities achievable by combining its two endpoint modes. Together with the exposed parts of the original curves, these outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Its radius in the mark direction gives the best average speed toward that mark.
 
