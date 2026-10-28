@@ -13,22 +13,23 @@ Lets get unnecessarily detailed here. Lets start with a fictive polar diagram of
 
 ![The jib and gennaker polars meet at 115.49° TWA, our desired direction. Both sails give 8.28 knots there. [Open full size](sail-change-crossover-intro.svg).](sail-change-crossover-intro.svg){.compact-figure fig-alt="Blue jib and brown gennaker polars overlap. A green dashed ray marks the desired direction through their crossover at 115.49 degrees TWA. A green dot marks the shared speed of 8.28 knots. No bridge or sailing modes are drawn."}
 
+But there is a conspicuous dent in the combined polar near that crossover. We could sail lower and faster under gennaker for part of the leg, then change to jib and sail higher to lay the mark.
 
-A sail change takes us between two discrete sailing modes. Here a *mode* means one specific true wind angle (TWA) with a specific sail at a specific true wind speed. It is a single point on a polar. Each sail has a whole polar containing many possible modes; choosing the faster sail at every TWA gives their combined outer curve. That curve can have inward dents.
+The idea is to find the two sail-and-TWA combinations that make this route as fast as possible. We call those optimal combinations *modes*. Sailing part of the leg in one and the rest in the other is sailing *between modes*.
 
-Across a dent, we can combine two modes and reach the mark sooner than sailing directly toward it with either sail. No wind shift is needed. It is the same idea as tacking or gybing, now between reaching modes.
+We still need to show that combining two such choices can beat sailing directly, and find which choices are optimal. The polar diagram gives us a way to do both, even in steady wind.
 
 ## Straight lines give an equivalent polar
 
-The figure below uses two fictive sail polars in the same steady 20-knot wind. Blue is the jib and brown is the gennaker. Angle gives TWA; distance from the origin gives boat speed in knots.
+Each point on a sail's polar describes a possible heading and boat speed. Pick two points and spend part of the time sailing at each. Distances add, so the horizontal and vertical speeds on the polar diagram average in the same proportions. Both coordinates vary linearly with the time fraction, so the possible averages trace the straight segment joining the points. Half the time in each gives its midpoint; other time splits give the rest of the segment.
+
+To find the fastest combination, choose the outermost bridge across the dent that touches both curves while keeping all available points on the origin side. At smooth contact points, the bridge is tangent to each curve. **Its contact points identify the modes**: the optimal sail-and-TWA combinations to use on the two parts of the leg.
 
 ![The desired direction passes through the jib-gennaker crossover. The red bridge joins modes G and J, giving 1.15 knots more average speed toward the mark. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. The mark-direction ray passes through their crossover at 115.49 degrees TWA and 8.28 knots. A red bridge joins J at 94.54 degrees to G at 122 degrees. P A lies on the bridge at 9.44 knots, a 13.90 percent gain."}
 
-A straight bridge across a dent represents the average velocities achievable by combining its two endpoint modes. Together with the exposed parts of the original curves, these outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Its radius in the mark direction gives the best average speed toward that mark.
+The bridge lies outside the sail polars between G and J. Its radius in the mark direction therefore gives a greater average speed toward the mark than either sail gives when sailing directly there. This is why these two modes are worth combining. No wind shift is needed. It is the same idea as tacking or gybing, now between reaching modes.
 
-Spend part of the time in G and the rest in J. Distances add, so the horizontal and vertical speeds on the polar diagram average in the same proportions. Both coordinates vary linearly with the time fraction, which makes the bridge straight. Half the time in each gives the midpoint of GJ. Other time splits trace the rest of that straight segment.
-
-Choose the outer bridge that touches both curves while keeping all available points on the origin side. At smooth contact points, the bridge is tangent to each curve. Where the resulting boundary follows a sail curve, sail directly; where it follows a bridge, combine its endpoints.
+Together with the exposed parts of the original curves, the outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Where the boundary follows a sail curve, sail directly; where it follows a bridge, combine its endpoint modes.
 
 ## The bridge points give the laylines
 
