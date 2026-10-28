@@ -200,3 +200,25 @@ test('owner view is cosmetic and cannot authorize comment management', async () 
     assert.equal((await handleRequest(request(path, { headers: { Cookie: session.cookie } }), env)).status, 404);
   }
 });
+
+test('return to the blog checks the owner session directly and preserves its expiry', async () => {
+  const env = environment();
+  const session = await signIn(env);
+  const expiresAt = env.sqlite.prepare('SELECT expires_at FROM admin_sessions').get().expires_at * 1000;
+  const response = await handleRequest(request('/admin/blog', { headers: { Cookie: session.cookie } }), env);
+  assert.equal(response.status, 303);
+  assert.equal(response.headers.get('Location'), 'https://sailinginunnecessarydetail.com/#owner=' + expiresAt);
+  assert.equal(response.headers.get('Cache-Control'), 'no-store');
+  for (const Cookie of ['', '__Host-comment-admin=forged']) {
+    const visitor = await handleRequest(request('/admin/blog', { headers: { Cookie } }), env);
+    assert.equal(visitor.status, 303);
+    assert.equal(visitor.headers.get('Location'), 'https://sailinginunnecessarydetail.com/#owner=0');
+  }
+  env.ADMIN_GITHUB_ID = '123';
+  assert.equal((await handleRequest(request('/admin/blog', { headers: { Cookie: session.cookie } }), env))
+    .headers.get('Location'), 'https://sailinginunnecessarydetail.com/#owner=0');
+  env.ADMIN_GITHUB_ID = '198742006';
+  env.sqlite.prepare('UPDATE admin_sessions SET expires_at=1').run();
+  assert.equal((await handleRequest(request('/admin/blog', { headers: { Cookie: session.cookie } }), env))
+    .headers.get('Location'), 'https://sailinginunnecessarydetail.com/#owner=0');
+});

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { setImmediate } from 'node:timers/promises';
 import vm from 'node:vm';
 import test from 'node:test';
-import { ADMIN_JS } from '../src/admin-ui.js';
+import { ADMIN_HTML, ADMIN_JS } from '../src/admin-ui.js';
 
 function browser(responses, confirmation = false) {
   class Element {
@@ -76,7 +76,9 @@ test('return to the blog enables owner view until session expiry and sign-out cl
     Response.json({ ok: true }),
   ]);
   await flush();
-  assert.equal(elements.blog.href, 'https://sailinginunnecessarydetail.com/#owner=' + expiresAt);
+  assert.match(ADMIN_HTML, /id="blog" href="\/admin\/blog"/);
+  // Returning does not depend on the asynchronous session check changing a link.
+  assert.equal(elements.blog.href, undefined);
   await elements.logout.handlers.click();
   assert.equal(requests[2].path, '/admin/logout');
   assert.equal(requests[2].options.headers['X-CSRF-Token'], 'csrf-token');

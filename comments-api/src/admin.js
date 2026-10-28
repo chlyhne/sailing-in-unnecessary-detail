@@ -85,7 +85,13 @@ export async function adminRequest(request, env, githubFetch = fetch) {
     const session = sessionToken && await env.DB.prepare('SELECT github_id, csrf, expires_at FROM admin_sessions WHERE token_hash = ?1')
       .bind(await hash(sessionToken)).first();
     if (!session || session.expires_at <= now || session.github_id !== env.ADMIN_GITHUB_ID) {
+      if (url.pathname === '/admin/blog' && request.method === 'GET') {
+        return redirect('https://sailinginunnecessarydetail.com/#owner=0');
+      }
       return reply({ error: 'Please sign in with GitHub.' }, 401);
+    }
+    if (url.pathname === '/admin/blog' && request.method === 'GET') {
+      return redirect('https://sailinginunnecessarydetail.com/#owner=' + session.expires_at * 1000);
     }
     if (request.method !== 'GET') {
       if (request.headers.get('Origin') !== env.ADMIN_ORIGIN || request.headers.get('X-CSRF-Token') !== session.csrf) {

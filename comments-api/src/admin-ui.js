@@ -2,7 +2,7 @@ export const ADMIN_HTML = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Manage comments · Sailing in Unnecessary Detail</title>
 <link rel="stylesheet" href="/admin/style.css"><script src="/admin/app.js" defer></script></head>
-<body><a id="blog" href="https://sailinginunnecessarydetail.com/#owner=0">Back to the blog</a>
+<body><a id="blog" href="/admin/blog">Back to the blog</a>
 <header><h1>Manage comments</h1><button id="logout" hidden>Sign out</button></header>
 <p id="status" role="status">Checking sign-in…</p>
 <p id="login" hidden><a href="/admin/login">Sign in with GitHub</a></p>
@@ -15,7 +15,6 @@ export const ADMIN_JS = `(function adminApp() {
   const logout = document.querySelector('#logout');
   const list = document.querySelector('#comments');
   const more = document.querySelector('#more');
-  const blog = document.querySelector('#blog');
   let csrf;
   let cursor = null;
   let loading = false;
@@ -100,7 +99,6 @@ export const ADMIN_JS = `(function adminApp() {
     try {
       const session = await api('/admin/session');
       csrf = session.csrf;
-      blog.href = 'https://sailinginunnecessarydetail.com/#owner=' + session.expiresAt;
       logout.hidden = false;
       await load();
     } catch (error) {

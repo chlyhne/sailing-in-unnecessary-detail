@@ -40,9 +40,10 @@ The Worker also needs the `RATE_LIMIT_SALT` secret, set once using
 characters. Do not put the secret into the repository or frontend.
 
 The Worker handles comments and owner sign-in only. Blog pages and draft pages
-are served by GitHub Pages. After signing in, **Back to the blog** carries the
-session expiry in a URL fragment so the blog can remember its owner-view display
-preference. This is not a credential and grants no comment-management access.
+are served by GitHub Pages. After signing in, **Back to the blog** checks the
+session on the server and redirects with its expiry in a URL fragment so the
+blog can remember its owner-view display preference. This is not a credential
+and grants no comment-management access.
 Signing out clears the blog preference when returning to the blog.
 
 Anonymous submissions are validated server-side and use parameterised SQL.
