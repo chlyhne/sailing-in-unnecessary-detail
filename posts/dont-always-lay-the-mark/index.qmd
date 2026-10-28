@@ -7,7 +7,12 @@ draft: true
 
 [← All posts](../../index.qmd)
 
-You can lay the mark under either jib or gennaker, and both sails give the same speed on that heading. It can still be quicker to sail below the mark under gennaker, then change to jib and head up to it.
+You have your gennaker up and it turns out you can juuuust about lay the next mark while being on the cusp of wiping out. The jib would maybe be almost as fast but you continue anyway - peeling is for whimps. Well is this really the fastest way? Is sailing lower and faster and then switching to the jib in the end to sail much higher to lay the mark better?
+
+Lets get unnecessarily detailed here. Lets start with a fictive polar diagram of a boat with a jib and gennaker. The gennaker is responsible for the part of the polar in the down wind section and the jib is reponsible for the part in the up wind section. At some point they intersect and the sails are equally quick. That is usually around the time where we decide to switch. Let's assume we want to go somewhere that calls for a TWA just at that crossover. This is shown in Figure 1.
+
+![The desired direction passes through the jib-gennaker crossover. The red bridge joins modes G and J, giving 1.15 knots more average speed toward the mark. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. The mark-direction ray passes through their crossover at 115.49 degrees TWA and 8.28 knots. A red bridge joins J at 94.54 degrees to G at 122 degrees. P A lies on the bridge at 9.44 knots, a 13.90 percent gain."}
+
 
 A sail change takes us between two discrete sailing modes. Here a *mode* means one specific true wind angle (TWA) with a specific sail at a specific true wind speed. It is a single point on a polar. Each sail has a whole polar containing many possible modes; choosing the faster sail at every TWA gives their combined outer curve. That curve can have inward dents.
 
