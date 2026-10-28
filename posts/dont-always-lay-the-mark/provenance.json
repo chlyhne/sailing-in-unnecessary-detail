@@ -1,0 +1,22 @@
+{
+  "source_section": "Sail changes and sailing modes",
+  "source_files": {
+    "../../random simuleringer/sailing_tactics_note.tex": "7eade678cb5dc13f7a5a4d0663c1c11bf4f6a335af77e3c640919d7e0d1fa0e4",
+    "../../random simuleringer/plots/sail_change_numbers.tex": "7dc738b90760c579a57425ecbe8604e39ccb6589f96a0d0a25af773f05b5c79a",
+    "../../random simuleringer/plots/sail_change_bridge.pdf": "0cf9989837f80173029b75ee0d07c33c911ab2657859292990f6f422d006c8cc",
+    "../../random simuleringer/plots/sail_change_course.pdf": "e4d2afe2f13ff2fd2ac0a5e8c9882c3c1eedf2e24f83ac5b3492b0c33cade8c4"
+  },
+  "figures": {
+    "sail-change-bridge.svg": {
+      "source": "../../random simuleringer/plots/sail_change_bridge.pdf",
+      "conversion": "pdftocairo -svg sail_change_bridge.pdf sail-change-bridge.svg",
+      "sha256": "d222ae9cc4f20303d6fe5a75cdd5bfc038746d7062d105fafdc06d680c501857"
+    },
+    "sail-change-course.svg": {
+      "source": "../../random simuleringer/plots/sail_change_course.pdf",
+      "conversion": "pdftocairo -svg sail_change_course.pdf sail-change-course.svg",
+      "sha256": "1120a775a6978416f9aab72148384a3c69b1f9bf2502440db3aeb20ab70fd67e"
+    }
+  },
+  "adaptation": "Figure artwork and numerical results reused without modification; prose adapted from the TeX section into a self-contained blog post."
+}
