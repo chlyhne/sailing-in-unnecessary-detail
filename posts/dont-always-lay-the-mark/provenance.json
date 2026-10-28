@@ -2,26 +2,41 @@
   "source_section": "Sail changes and sailing modes",
   "source_files": {
     "../../random simuleringer/sailing_tactics_note.tex": "7eade678cb5dc13f7a5a4d0663c1c11bf4f6a335af77e3c640919d7e0d1fa0e4",
-    "../../random simuleringer/plots/sail_change_numbers.tex": "7dc738b90760c579a57425ecbe8604e39ccb6589f96a0d0a25af773f05b5c79a",
-    "../../random simuleringer/plots/sail_change_course.pdf": "a4cff6dca2275f280371372c82692a7beb6b3ce738db54ab7d54efaee627b83b",
-    "../../random simuleringer/scripts/sail_change.py": "8dbf6ab7cde51b37d595af7b7a7ae9e4d66374384ffe0a96dbe4132c1c993c6f",
-    "../../random simuleringer/plots/sail_change_between_sails.pdf": "8bfbce6f63819606ab24a5fb40c786f7d266e6e53d85bf0cff283a2e038ef12b"
+    "../../random simuleringer/scripts/sail_change.py": "fa273321bfa719cd05da45eac9494e35dac40b64be8997d33acd9efa29f8a9de",
+    "../../random simuleringer/plots/sail_change_between_sails.pdf": "c8a88cbe38b968c49ac4876b6225740af7b41f51ef22ad9cec308aed0a3ffc36",
+    "../../random simuleringer/plots/sail_change_crossover_leg.pdf": "8cdefc6c4752b22c57952e0d7b8baaec66af00318a346b21cd9c12747fcb92f4",
+    "../../random simuleringer/plots/sail_change_crossover_numbers.json": "439e8208fd15fa7dfb913349d2a52786475d3d552c8fdf515f33861177e42258"
   },
   "figures": {
-    "sail-change-course.svg": {
-      "source": "../../random simuleringer/plots/sail_change_course.pdf",
-      "conversion": "pdftocairo -svg sail_change_course.pdf sail-change-course.svg",
-      "sha256": "2c5fcc9972c96e4b051f0025e763eadfb1417b3640b44e643d26e7ed7eeb24fb",
-      "transparent_background": true,
-      "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for both plots."
-    },
     "sail-change-between-sails.svg": {
       "source": "../../random simuleringer/plots/sail_change_between_sails.pdf",
       "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for both plots.",
       "conversion": "pdftocairo -svg sail_change_between_sails.pdf sail-change-between-sails.svg",
-      "sha256": "59b91e4662213680b8f4c1d037fb8fdb7f9379fd7240d39744b8060e38403328",
+      "sha256": "dbeb15654b5650328dbbf9418205c146222552bd09c9a56cfa94949b62ee0f31",
       "transparent_background": true
+    },
+    "sail-change-crossover-leg.svg": {
+      "source": "../../random simuleringer/plots/sail_change_crossover_leg.pdf",
+      "conversion": "pdftocairo -svg sail_change_crossover_leg.pdf sail-change-crossover-leg.svg",
+      "transparent_background": true,
+      "generator": "See README.md#sail-mode-figures; crossover_leg uses gennaker as the direct baseline.",
+      "sha256": "870e081c18f2c2cd14961013b86a6aac6cdfd145e4daf54dd7e3319989c8f073"
     }
   },
-  "adaptation": "The polar figure reuses the original plotting function with the same-sail bridge omitted. Both plots are exported with transparent figure and axes backgrounds. Numerical results are unchanged; prose is adapted into a self-contained blog post."
+  "adaptation": "The blog uses a separate one-leg crossover example from the same sail polars and plotting code. The note retains its original default plots and numerical example. Both web figures have transparent backgrounds.",
+  "example": {
+    "course_deg": 115.48612359761422,
+    "direct_sail": "gennaker",
+    "direct_speed_kn": 8.283895266227736,
+    "jib_speed_kn": 8.2838952662277,
+    "effective_speed_kn": 9.435305248259953,
+    "speed_gain_percent": 13.899378794977668,
+    "distance_nm": 0.9435305248259953,
+    "sailed_distance_nm": 0.9635912421315608,
+    "gennaker_time_seconds": 254.89970718976497,
+    "jib_time_seconds": 105.10029281023502,
+    "mode_time_seconds": 360.0,
+    "direct_time_seconds": 410.03776366191966,
+    "saved_seconds": 50.037763661919655
+  }
 }

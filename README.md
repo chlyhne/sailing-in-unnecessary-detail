@@ -177,17 +177,20 @@ licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 ## Sail-mode figures
 
-The sail-change polar uses `draw_construction` in the sailing simulations,
-omitting the optional same-gennaker modes. Regenerate both plots with transparent
-figure and axes backgrounds from the `random simuleringer` directory with:
+The blog uses a separate crossover example: a single A-to-B leg at the angle
+where jib and gennaker have equal speed, with gennaker chosen as the direct
+baseline. The note still uses its original two-bridge, two-leg example through
+the unchanged `main()` calls. Regenerate the blog figures with transparent
+backgrounds from the `random simuleringer` directory with:
 
 ```sh
 PYTHONPATH=scripts .venv/bin/python - <<'PY'
 import sail_change as figures
 figures.plt.rcParams['savefig.transparent'] = True
 sails, _ = figures.steady_example()
-figures.draw_construction(sails)
-figures.draw_course(figures.steady_course(sails, figures.same_sail_example(sails)))
+leg = figures.crossover_leg(sails)
+figures.draw_construction(sails, course=leg['bearing'])
+figures.draw_course(leg)
 PY
 ```
 
@@ -195,7 +198,7 @@ From the blog root, export the web figures:
 
 ```sh
 pdftocairo -svg '../../random simuleringer/plots/sail_change_between_sails.pdf' posts/dont-always-lay-the-mark/sail-change-between-sails.svg
-pdftocairo -svg '../../random simuleringer/plots/sail_change_course.pdf' posts/dont-always-lay-the-mark/sail-change-course.svg
+pdftocairo -svg '../../random simuleringer/plots/sail_change_crossover_leg.pdf' posts/dont-always-lay-the-mark/sail-change-crossover-leg.svg
 ```
 
 The post's `provenance.json` records source and figure hashes. The blog ships

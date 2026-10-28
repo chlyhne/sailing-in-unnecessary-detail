@@ -7,7 +7,7 @@ draft: true
 
 [← All posts](../../index.qmd)
 
-You can lay the mark under jib, and the jib is faster than the gennaker on that heading. It can still be quicker to sail below the mark under gennaker, then change to jib and head up to it.
+You can lay the mark under either jib or gennaker, and both sails give the same speed on that heading. It can still be quicker to sail below the mark under gennaker, then change to jib and head up to it.
 
 A sail change takes us between two discrete sailing modes. Here a *mode* means one specific true wind angle (TWA) with a specific sail at a specific true wind speed. It is a single point on a polar. Each sail has a whole polar containing many possible modes; choosing the faster sail at every TWA gives their combined outer curve. That curve can have inward dents.
 
@@ -17,7 +17,7 @@ Across a dent, we can combine two modes and reach the mark sooner than sailing d
 
 The figure below uses two fictive sail polars in the same steady 20-knot wind. Blue is the jib and brown is the gennaker. Angle gives TWA; distance from the origin gives boat speed in knots.
 
-![The red bridge joins gennaker mode G and jib mode J. The marked radial gap shows the gain over sailing directly. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. A red straight bridge joins J at 94.54 degrees TWA to G at 122 degrees. Its intersection with the mark-direction ray, P A, is 0.57 knots beyond the direct-course polar."}
+![The desired direction passes through the jib-gennaker crossover. The red bridge joins modes G and J, giving 1.15 knots more average speed toward the mark. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. The mark-direction ray passes through their crossover at 115.49 degrees TWA and 8.28 knots. A red bridge joins J at 94.54 degrees to G at 122 degrees. P A lies on the bridge at 9.44 knots, a 13.90 percent gain."}
 
 A straight bridge across a dent represents the average velocities achievable by combining its two endpoint modes. Together with the exposed parts of the original curves, these outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Its radius in the mark direction gives the best average speed toward that mark.
 
@@ -38,14 +38,16 @@ These are the layline angles for the two modes. They generally differ from the s
 
 Draw the jib layline backwards from the mark, at the J heading plus 180°. Sail mode G until reaching that line, then change sail and head directly to the mark in mode J. In steady wind, reversing the order gives the same total time.
 
-Changing the mark direction within this sector changes how long each mode is used, while the two endpoint modes stay fixed. The mark ray meets the bridge at $P_{\mathrm A}$; its position along GJ gives the time split.
+Changing the mark direction within this sector changes how long each mode is used, while the two endpoint modes stay fixed. The mark ray meets the bridge at $P_{\mathrm A}$. The distance from J to $P_{\mathrm A}$, divided by the full length JG, gives the fraction of time spent under gennaker.
 
-In this example the mark is at 110.09° TWA and $P_{\mathrm A}$ is halfway along the bridge. Three minutes in each mode gives an average speed toward the mark of **8.88 knots**, compared with **8.31 knots** directly under jib. The route is slightly longer, 0.91 rather than 0.89 nautical miles, but takes **6:00 instead of 6:25**.
+Here the mark is at the crossover, **115.49° TWA**, where both sails give **8.28 knots** directly toward it. For these polars, this is the worst direct-sailing case within the bridge sector. Switching sails while staying on that heading gives no improvement. We use the gennaker for the direct boat.
 
-## Two boats around the same course
+The bridge puts 70.8% of the time in G: about **4:15 under gennaker and 1:45 under jib**. The average speed toward the mark becomes **9.44 knots**, a **13.90%** gain. The route is slightly longer, 0.96 rather than 0.94 nautical miles, but takes **6:00 instead of 6:50**.
 
-One boat sails directly toward each mark using the faster sail at that heading. The other combines G and J on the first leg. On the second leg it combines a lower mode L and a higher mode H under the same gennaker. Each boat starts the second leg when it reaches A.
+## Two boats from A to B
 
-![Combining modes reaches A in 6:00 instead of 6:25, and B in 12:00 instead of 12:33. Colour shows each boat's lead at equal elapsed times, in Seascape 27 lengths. [Open full size](sail-change-course.svg).](sail-change-course.svg){fig-alt="Two complete tracks from Start through A to B in steady 20-knot wind. The direct boat uses jib to A and gennaker to B. The modes boat changes from G to J before A, then from L to H before B. A finish inset shows the modes boat ahead by 22.8 boat lengths."}
+Both boats start at A and sail to B. The direct boat holds the gennaker on the crossover heading. The modes boat sails G first, then changes to J at the backward layline from B.
+
+![Combining modes reaches B in 6:00 instead of 6:50, saving 50 seconds. Colour shows each boat's lead at equal elapsed times, in Seascape 27 lengths. [Open full size](sail-change-crossover-leg.svg).](sail-change-crossover-leg.svg){fig-alt="A single leg from A to B at the jib-gennaker crossover angle. The direct boat uses the gennaker throughout, at the same speed the jib would give. The modes boat sails below the direct course under gennaker, then heads up under jib to reach B sooner. An inset compares both positions when the modes boat finishes."}
 
 The construction assumes constant wind, settled speed, and no losses when changing mode. A real sail change has to cost less than the time saved. But being able to lay the mark, even with the faster sail for that heading, does not by itself make the direct course quickest.
