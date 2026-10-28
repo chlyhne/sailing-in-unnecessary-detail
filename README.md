@@ -178,17 +178,24 @@ licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 ## Sail-mode figures
 
 The sail-change polar uses `draw_construction` in the sailing simulations,
-omitting the optional same-gennaker modes. Regenerate its PDF and PNG from
-the `random simuleringer` directory with:
+omitting the optional same-gennaker modes. Regenerate both plots with transparent
+figure and axes backgrounds from the `random simuleringer` directory with:
 
 ```sh
-PYTHONPATH=scripts .venv/bin/python -c 'from sail_change import draw_construction, steady_example; draw_construction(steady_example()[0])'
+PYTHONPATH=scripts .venv/bin/python - <<'PY'
+import sail_change as figures
+figures.plt.rcParams['savefig.transparent'] = True
+sails, _ = figures.steady_example()
+figures.draw_construction(sails)
+figures.draw_course(figures.steady_course(sails, figures.same_sail_example(sails)))
+PY
 ```
 
-From the blog root, export the web figure:
+From the blog root, export the web figures:
 
 ```sh
 pdftocairo -svg '../../random simuleringer/plots/sail_change_between_sails.pdf' posts/dont-always-lay-the-mark/sail-change-between-sails.svg
+pdftocairo -svg '../../random simuleringer/plots/sail_change_course.pdf' posts/dont-always-lay-the-mark/sail-change-course.svg
 ```
 
 The post's `provenance.json` records source and figure hashes. The blog ships

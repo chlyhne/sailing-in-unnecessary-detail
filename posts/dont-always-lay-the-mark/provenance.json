@@ -3,22 +3,25 @@
   "source_files": {
     "../../random simuleringer/sailing_tactics_note.tex": "7eade678cb5dc13f7a5a4d0663c1c11bf4f6a335af77e3c640919d7e0d1fa0e4",
     "../../random simuleringer/plots/sail_change_numbers.tex": "7dc738b90760c579a57425ecbe8604e39ccb6589f96a0d0a25af773f05b5c79a",
-    "../../random simuleringer/plots/sail_change_course.pdf": "e4d2afe2f13ff2fd2ac0a5e8c9882c3c1eedf2e24f83ac5b3492b0c33cade8c4",
+    "../../random simuleringer/plots/sail_change_course.pdf": "a4cff6dca2275f280371372c82692a7beb6b3ce738db54ab7d54efaee627b83b",
     "../../random simuleringer/scripts/sail_change.py": "8dbf6ab7cde51b37d595af7b7a7ae9e4d66374384ffe0a96dbe4132c1c993c6f",
-    "../../random simuleringer/plots/sail_change_between_sails.pdf": "092aceec6f3335d9e2c11aa064ace0b3348568414d2c85064004c39c0003d9c5"
+    "../../random simuleringer/plots/sail_change_between_sails.pdf": "8bfbce6f63819606ab24a5fb40c786f7d266e6e53d85bf0cff283a2e038ef12b"
   },
   "figures": {
     "sail-change-course.svg": {
       "source": "../../random simuleringer/plots/sail_change_course.pdf",
       "conversion": "pdftocairo -svg sail_change_course.pdf sail-change-course.svg",
-      "sha256": "1120a775a6978416f9aab72148384a3c69b1f9bf2502440db3aeb20ab70fd67e"
+      "sha256": "2c5fcc9972c96e4b051f0025e763eadfb1417b3640b44e643d26e7ed7eeb24fb",
+      "transparent_background": true,
+      "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for both plots."
     },
     "sail-change-between-sails.svg": {
       "source": "../../random simuleringer/plots/sail_change_between_sails.pdf",
-      "generator": "PYTHONPATH=scripts .venv/bin/python -c 'from sail_change import draw_construction, steady_example; draw_construction(steady_example()[0])'",
+      "generator": "See README.md#sail-mode-figures; savefig.transparent is enabled for both plots.",
       "conversion": "pdftocairo -svg sail_change_between_sails.pdf sail-change-between-sails.svg",
-      "sha256": "0bd4f5ff5f619d646a588163befe6066b5689ad80d9b8881778a7cbead76e429"
+      "sha256": "59b91e4662213680b8f4c1d037fb8fdb7f9379fd7240d39744b8060e38403328",
+      "transparent_background": true
     }
   },
-  "adaptation": "The polar figure reuses the original plotting function with the same-sail bridge omitted. The course figure and numerical results are unchanged. Prose is adapted into a self-contained blog post."
+  "adaptation": "The polar figure reuses the original plotting function with the same-sail bridge omitted. Both plots are exported with transparent figure and axes backgrounds. Numerical results are unchanged; prose is adapted into a self-contained blog post."
 }

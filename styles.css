@@ -137,7 +137,7 @@ p { margin: 1.25rem 0; }
 
 img, svg { max-width: 100%; height: auto; }
 figure { margin: 2.5rem 0; }
-figure img { display: block; width: 100%; background: #fff; }
+figure img { display: block; width: 100%; }
 .compact-figure img, img.compact-figure {
   max-height: min(38rem, 70vh);
   object-fit: contain;
