@@ -174,3 +174,22 @@ the article's `provenance.json`.
 The lee-bow diagram embeds the unmodified 😎 and 😞 artwork from
 [Twemoji](https://github.com/jdecked/twemoji), by Twitter, Inc. and contributors,
 licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+## Sail-mode figures
+
+The sail-change polar uses `draw_construction` in the sailing simulations,
+omitting the optional same-gennaker modes. Regenerate its PDF and PNG from
+the `random simuleringer` directory with:
+
+```sh
+PYTHONPATH=scripts .venv/bin/python -c 'from sail_change import draw_construction, steady_example; draw_construction(steady_example()[0])'
+```
+
+From the blog root, export the web figure:
+
+```sh
+pdftocairo -svg '../../random simuleringer/plots/sail_change_between_sails.pdf' posts/dont-always-lay-the-mark/sail-change-between-sails.svg
+```
+
+The post's `provenance.json` records source and figure hashes. The blog ships
+the exported SVGs, so rendering requires no simulation environment.

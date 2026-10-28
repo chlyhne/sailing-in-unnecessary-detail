@@ -17,7 +17,7 @@ Across a dent, we can combine two modes and reach the mark sooner than sailing d
 
 The figure below uses two fictive sail polars in the same steady 20-knot wind. Blue is the jib and brown is the gennaker. Angle gives TWA; distance from the origin gives boat speed in knots.
 
-![The red bridge A joins gennaker mode G and jib mode J. The purple bridge B joins two modes under the same gennaker. The marked radial gaps show the gains over sailing directly. [Open full size](sail-change-bridge.svg).](sail-change-bridge.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. A red straight bridge joins J at 94.54 degrees TWA to G at 122 degrees. Its intersection with the mark-direction ray, P A, is 0.57 knots beyond the direct-course polar. A purple bridge joins H and L on the gennaker curve."}
+![The red bridge joins gennaker mode G and jib mode J. The marked radial gap shows the gain over sailing directly. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. A red straight bridge joins J at 94.54 degrees TWA to G at 122 degrees. Its intersection with the mark-direction ray, P A, is 0.57 knots beyond the direct-course polar."}
 
 A straight bridge across a dent represents the average velocities achievable by combining its two endpoint modes. Together with the exposed parts of the original curves, these outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Its radius in the mark direction gives the best average speed toward that mark.
 
@@ -44,7 +44,7 @@ In this example the mark is at 110.09° TWA and $P_{\mathrm A}$ is halfway along
 
 ## Two boats around the same course
 
-One boat sails directly toward each mark using the faster sail at that heading. The other combines G and J on the first leg. On the second leg it uses the purple bridge, combining L and H under the same gennaker. Each boat starts the second leg when it reaches A.
+One boat sails directly toward each mark using the faster sail at that heading. The other combines G and J on the first leg. On the second leg it combines a lower mode L and a higher mode H under the same gennaker. Each boat starts the second leg when it reaches A.
 
 ![Combining modes reaches A in 6:00 instead of 6:25, and B in 12:00 instead of 12:33. Colour shows each boat's lead at equal elapsed times, in Seascape 27 lengths. [Open full size](sail-change-course.svg).](sail-change-course.svg){fig-alt="Two complete tracks from Start through A to B in steady 20-knot wind. The direct boat uses jib to A and gennaker to B. The modes boat changes from G to J before A, then from L to H before B. A finish inset shows the modes boat ahead by 22.8 boat lengths."}
 
