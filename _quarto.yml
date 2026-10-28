@@ -4,6 +4,7 @@ project:
   resources:
     - comments.js
     - navigation.js
+    - article-analytics.js
   render:
     - "*.qmd"
     - "posts/**/*.qmd"

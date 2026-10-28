@@ -50,6 +50,41 @@ monthly unique-user estimate. Use **Realtime** to check that data is arriving
 after accepting analytics cookies on the live site. Visitors who decline
 tracking or block the tag will not be included.
 
+### Article reading reports
+
+`article-analytics.js` sends these GA4 events only while tracking consent is
+currently granted. Home-page and standalone readings share `article_path`,
+with `article_placement` distinguishing `home` from `article`:
+
+- `article_progress`: a 25%, 50%, 75%, or 100% position is visible during a
+  focused-tab sample (`article_percent`). Each milestone fires once per page
+  load; scrolling past a position between samples does not count it.
+- `article_reading_time`: 30, 60, 120, 300, or 600 seconds accumulated with
+  the article in view and the tab visible and focused (`reading_milestone`).
+- `article_comments_jump`: the reader clicks **Jump to comments**. Progress
+  and article time pause until the reader returns above the end of the article.
+
+All events include `article_path`, `article_title`, `article_placement`, and
+cumulative `reading_seconds`. These are indicators of reading, not proof of
+completion. Notes and comments are outside the measured article body.
+No events are queued for visitors who decline tracking. Data begins with this
+change; earlier reading progress cannot be reconstructed.
+
+In GA4, open **Admin ? Custom definitions** and create event-scoped dimensions
+for `article_path`, `article_title`, `article_placement`, `article_percent`,
+and `reading_milestone`. Create a custom metric for `reading_seconds` with
+seconds as its unit. This cumulative value is best inspected per milestone;
+do not sum it across all events as total reading time.
+See [Google's event parameter documentation](https://developers.google.com/analytics/devguides/collection/ga4/event-parameters).
+
+Use **Realtime** to check incoming events after accepting analytics cookies.
+In **Explore**, compare total users by `article_path`, event name, and progress
+percentage; filter placement to distinguish the home page from article pages.
+Custom definitions may take up to 48 hours to become available in reports.
+The default GA scroll event remains a separate page-level measurement.
+
+Run the tracking checks with `node --test test/article-analytics.test.cjs`.
+
 ## Comments
 
 Every post has a comment form with a name and plain-text comment. Comments
