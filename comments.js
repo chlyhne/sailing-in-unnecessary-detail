@@ -33,6 +33,16 @@
     </form>
   `;
   loader.before(section);
+  const jump = document.createElement('p');
+  jump.className = 'comments-jump';
+  const link = document.createElement('a');
+  link.href = '#comments';
+  link.textContent = 'Jump to comments';
+  jump.append(link);
+  const articleHeading = latestPost?.querySelector('h2') || document.querySelector('#title-block-header');
+  articleHeading?.after(jump);
+  // Resolve direct comment links after the dynamically created target exists.
+  if (location.hash === '#comments') section.scrollIntoView();
   const form = section.querySelector('form');
   const submit = form.querySelector('button[type="submit"]');
   const formStatus = section.querySelector('[data-form-status]');

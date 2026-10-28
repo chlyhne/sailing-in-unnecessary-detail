@@ -19,8 +19,8 @@ header. Place its figures alongside it. Use `$...$` for inline mathematics and
 `$$...$$` for display equations. Set `draft: true` while writing; remove it when
 ready to publish. Add a link back to `../../index.qmd` in the post.
 
-Add each published article to the list in `_includes/footer.html`, using the
-existing entry as a template. This one list appears on every page.
+Add each published article to the list in `_includes/header.html`, using the
+existing entry as a template. This one list appears on every page, as a sidebar on desktop and a collapsed Articles menu above the content on phones.
 The home page automatically appends the full newest published post below the
 introduction, selected by its `date` (use `YYYY-MM-DD`). Posts with `draft: true`
 are excluded. Keep `index.qmd` as the short blog introduction and edit your
@@ -56,7 +56,7 @@ Every post has a comment form with a name and plain-text comment. Comments
 are stored in the blog's own Cloudflare D1 database through `comments-api/`;
 readers do not need an account or email address. The newest post on the home
 page shows the same comment thread as its article page, with comments above
-the new-comment form. Titles can change without losing comments.
+the new-comment form. A link near the article title jumps to the comments. Titles can change without losing comments.
 
 See [comments-api/README.md](comments-api/README.md) for local preview,
 deployment, comment removal and database backups.

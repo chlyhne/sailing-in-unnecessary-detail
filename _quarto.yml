@@ -3,6 +3,7 @@ project:
   output-dir: _site
   resources:
     - comments.js
+    - navigation.js
   render:
     - "*.qmd"
     - "posts/**/*.qmd"
