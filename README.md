@@ -93,6 +93,10 @@ readers do not need an account or email address. The newest post on the home
 page shows the same comment thread as its article page, with comments above
 the new-comment form. A link near the article title jumps to the comments. Titles can change without losing comments.
 
+The footer has a **Manage comments** link for owner-only GitHub sign-in and
+comment deletion. One-time OAuth app setup and Worker secrets are required;
+see [owner setup](comments-api/README.md#owner-only-comment-management).
+
 See [comments-api/README.md](comments-api/README.md) for local preview,
 deployment, comment removal and database backups.
 

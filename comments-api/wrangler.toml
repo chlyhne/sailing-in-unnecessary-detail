@@ -4,6 +4,9 @@ compatibility_date = "2026-10-27"
 workers_dev = true
 
 [vars]
+ADMIN_ORIGIN = "https://sailing-blog-comments.hummesse.workers.dev"
+# Permanent GitHub account ID for chlyhne.
+ADMIN_GITHUB_ID = "198742006"
 ALLOWED_ORIGINS = "https://sailinginunnecessarydetail.com,https://www.sailinginunnecessarydetail.com"
 
 [[d1_databases]]

@@ -1,3 +1,5 @@
+import { adminRequest } from './admin.js';
+
 const BLOG_ORIGIN = 'https://sailinginunnecessarydetail.com';
 const PAGE_SIZE = 50;
 const MAX_BODY_BYTES = 20000;
@@ -111,6 +113,8 @@ async function listComments(url, env) {
 }
 
 export async function handleRequest(request, env) {
+  const path = new URL(request.url).pathname;
+  if (path === '/admin' || path.startsWith('/admin/')) return adminRequest(request, env);
   const origin = request.headers.get('Origin');
   const allowed = (env.ALLOWED_ORIGINS || BLOG_ORIGIN).split(',').map(value => value.trim());
   const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store',
@@ -156,5 +160,9 @@ export default {
   async scheduled(_event, env) {
     await env.DB.prepare('DELETE FROM rate_limits WHERE expires_at < ?1')
       .bind(Math.floor(Date.now() / 1000)).run();
+    for (const table of ['admin_oauth', 'admin_sessions']) {
+      await env.DB.prepare(`DELETE FROM ${table} WHERE expires_at < ?1`)
+        .bind(Math.floor(Date.now() / 1000)).run();
+    }
   },
 };

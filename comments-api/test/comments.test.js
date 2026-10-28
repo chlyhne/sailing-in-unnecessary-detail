@@ -10,6 +10,7 @@ const POST = '/posts/reading-the-wind/';
 function environment() {
   const sqlite = new DatabaseSync(':memory:');
   sqlite.exec(readFileSync(new URL('../migrations/0001_comments.sql', import.meta.url), 'utf8'));
+  sqlite.exec(readFileSync(new URL('../migrations/0002_admin.sql', import.meta.url), 'utf8'));
   const prepare = (sql, bindings = []) => ({
     bind: (...values) => prepare(sql, values),
     async first() { return sqlite.prepare(sql).get(...bindings) ?? null; },
