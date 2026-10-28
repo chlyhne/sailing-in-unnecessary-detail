@@ -3,6 +3,7 @@ export const ADMIN_HTML = `<!doctype html>
 <meta name="robots" content="noindex,nofollow"><title>Manage comments · Sailing in Unnecessary Detail</title>
 <link rel="stylesheet" href="/admin/style.css"><script src="/admin/app.js" defer></script></head>
 <body><a href="https://sailinginunnecessarydetail.com/">Back to the blog</a>
+<p><a href="/">Preview blog including drafts</a></p>
 <header><h1>Manage comments</h1><button id="logout" hidden>Sign out</button></header>
 <p id="status" role="status">Checking sign-in…</p>
 <p id="login" hidden><a href="/admin/login">Sign in with GitHub</a></p>

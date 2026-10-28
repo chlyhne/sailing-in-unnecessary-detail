@@ -85,7 +85,19 @@ export async function adminRequest(request, env, githubFetch = fetch) {
     const session = sessionToken && await env.DB.prepare('SELECT github_id, csrf, expires_at FROM admin_sessions WHERE token_hash = ?1')
       .bind(await hash(sessionToken)).first();
     if (!session || session.expires_at <= now || session.github_id !== env.ADMIN_GITHUB_ID) {
+      if (!url.pathname.startsWith('/admin') && ['GET', 'HEAD'].includes(request.method)) return redirect('/admin');
       return reply({ error: 'Please sign in with GitHub.' }, 401);
+    }
+    if (!url.pathname.startsWith('/admin') && ['GET', 'HEAD'].includes(request.method)) {
+      if (!env.ASSETS) return reply({ error: 'The owner preview has not been built yet.' }, 503);
+      if (url.pathname.endsWith('/')) url.pathname += 'index.html';
+      const asset = await env.ASSETS.fetch(new Request(url, { method: request.method }));
+      const response = new Response(asset.body, asset);
+      response.headers.set('Cache-Control', 'private, no-store');
+      response.headers.set('X-Robots-Tag', 'noindex, nofollow');
+      response.headers.set('X-Content-Type-Options', 'nosniff');
+      response.headers.set('Referrer-Policy', 'no-referrer');
+      return response;
     }
     if (request.method !== 'GET') {
       if (request.headers.get('Origin') !== env.ADMIN_ORIGIN || request.headers.get('X-CSRF-Token') !== session.csrf) {

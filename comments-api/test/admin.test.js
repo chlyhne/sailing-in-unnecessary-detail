@@ -183,3 +183,60 @@ test('expired sessions, changed owner ID and logout revoke access', async () => 
   await worker.scheduled({}, env);
   assert.equal(env.sqlite.prepare('SELECT count(*) AS n FROM admin_sessions').get().n, 0);
 });
+
+test('preview HTML, images and scripts are all protected by the owner session', async () => {
+  const env = environment();
+  const seen = [];
+  env.ASSETS = { fetch: async request => {
+    seen.push(request);
+    return new Response(request.method === 'HEAD' ? null : 'Private draft', {
+      headers: { 'Content-Type': 'text/html', 'Cache-Control': 'public, max-age=3600' },
+    });
+  } };
+  // Asset-first routing would bypass this check. Keep the Worker first for all assets.
+  const config = readFileSync(new URL('../wrangler.toml', import.meta.url), 'utf8');
+  assert.match(config, /run_worker_first = true/);
+  const paths = ['/', '/index.html', '/posts/dont-always-lay-the-mark/',
+    '/posts/dont-always-lay-the-mark/moding.svg', '/styles.css', '/navigation.js'];
+  for (const path of paths) {
+    for (const Cookie of ['', '__Host-comment-admin=forged']) {
+      const response = await handleRequest(request(path, { headers: { Cookie } }), env);
+      assert.equal(response.status, 303);
+      assert.equal(response.headers.get('Location'), '/admin');
+      assert.ok(!(await response.text()).includes('Private draft'));
+    }
+  }
+  assert.equal(seen.length, 0);
+  const session = await signIn(env);
+  for (const path of paths) {
+    const response = await handleRequest(authenticated(path, session), env);
+    assert.equal(response.status, 200);
+    assert.equal(await response.text(), 'Private draft');
+    assert.equal(response.headers.get('Cache-Control'), 'private, no-store');
+    assert.equal(response.headers.get('X-Robots-Tag'), 'noindex, nofollow');
+    assert.equal(seen.at(-1).headers.get('Cookie'), null);
+  }
+  assert.equal(new URL(seen[0].url).pathname, '/index.html');
+  assert.equal(new URL(seen[2].url).pathname, '/posts/dont-always-lay-the-mark/index.html');
+  const head = await handleRequest(authenticated('/styles.css', session, 'HEAD'), env);
+  assert.equal(head.status, 200);
+  assert.equal(await head.text(), '');
+  env.sqlite.prepare('UPDATE admin_sessions SET expires_at=1').run();
+  assert.equal((await handleRequest(authenticated('/', session), env)).status, 303);
+  const fresh = await signIn(env);
+  env.ADMIN_GITHUB_ID = '123';
+  assert.equal((await handleRequest(authenticated('/', fresh), env)).status, 303);
+});
+
+test('preview fails closed without OAuth setup and never exposes assets outside the owner origin', async () => {
+  let calls = 0;
+  const assets = { fetch: async () => { calls++; return new Response('Private draft'); } };
+  assert.equal((await handleRequest(request('/'), { ASSETS: assets })).status, 503);
+  const env = environment();
+  env.ASSETS = assets;
+  const session = await signIn(env);
+  const wrongOrigin = new Request('https://evil.example/posts/draft/', { headers: { Cookie: session.cookie } });
+  assert.equal((await handleRequest(wrongOrigin, env)).status, 403);
+  assert.equal((await handleRequest(authenticated('/', session, 'GET', { Origin: 'https://evil.example' }), env)).status, 403);
+  assert.equal(calls, 0);
+});

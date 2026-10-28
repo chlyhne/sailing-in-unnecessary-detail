@@ -65,6 +65,16 @@ test('comments persist and remain isolated to their own posts', async () => {
   assert.deepEqual((await (await handleRequest(listing('/posts/different/'), env)).json()).comments, []);
 });
 
+test('the owner preview can use the same comment threads as the public blog', async () => {
+  const env = environment();
+  env.ADMIN_ORIGIN = 'https://comments.example';
+  const response = await handleRequest(submit({}, { headers: { Origin: env.ADMIN_ORIGIN } }), env);
+  assert.equal(response.status, 201);
+  assert.equal(response.headers.get('Access-Control-Allow-Origin'), env.ADMIN_ORIGIN);
+  const { comment } = await response.json();
+  assert.deepEqual((await (await handleRequest(listing(), env)).json()).comments, [comment]);
+});
+
 test('stored text is not treated as SQL and never becomes database metadata', async () => {
   const env = environment();
   const name = "Robert'); DROP TABLE comments;--";

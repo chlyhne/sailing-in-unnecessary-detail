@@ -114,9 +114,11 @@ async function listComments(url, env) {
 
 export async function handleRequest(request, env) {
   const path = new URL(request.url).pathname;
-  if (path === '/admin' || path.startsWith('/admin/')) return adminRequest(request, env);
+  if (path === '/admin' || path.startsWith('/admin/') ||
+      (env.ASSETS && path !== '/comments' && path !== '/health')) return adminRequest(request, env);
   const origin = request.headers.get('Origin');
   const allowed = (env.ALLOWED_ORIGINS || BLOG_ORIGIN).split(',').map(value => value.trim());
+  if (env.ADMIN_ORIGIN) allowed.push(env.ADMIN_ORIGIN);
   const headers = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store',
     'X-Content-Type-Options': 'nosniff', Vary: 'Origin' };
   if (origin && allowed.includes(origin)) headers['Access-Control-Allow-Origin'] = origin;

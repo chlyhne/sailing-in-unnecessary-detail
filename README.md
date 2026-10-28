@@ -38,6 +38,37 @@ Commit and push to `main`. `.github/workflows/publish.yml` renders and deploys t
 
 Live site: https://sailinginunnecessarydetail.com/
 
+## Owner preview of drafts
+
+The footer's **Owner preview** opens a private copy of the blog on the existing
+comments Worker. Sign in with GitHub as `chlyhne`, then choose **Preview blog
+including drafts**. This uses the same owner session as comment management.
+Signing in to GitHub alone does not sign in to the blog; use this link once.
+The preview shows drafts as ordinary published posts, including the newest
+article on the home page and all posts in the article sidebar.
+
+The public GitHub Pages build still excludes `draft: true`. The private build
+checks the owner's permanent GitHub account ID before serving every page,
+image or script. It sends no analytics and uses `private, no-store` responses.
+Draft source flags are never changed in the working tree.
+
+The existing `npm run dev` and `npm run deploy` commands in `comments-api/`
+build the private copy automatically. To build it separately:
+
+```sh
+python3 scripts/build_owner_preview.py
+```
+
+The preview reuses the comment-management GitHub app, its existing Worker
+secrets and the same owner sessions. No additional secret is needed. Deploy it
+alongside comments using `npm run deploy` in `comments-api/`, with the existing
+Wrangler login. Deploy the Worker again when draft content changes.
+The publish workflow checks the private build without deploying it; pushing
+to `main` still deploys the public blog to GitHub Pages as before.
+
+Removing `draft: true` makes the post public on the next deployment. Add it to
+the public article list in `_includes/header.html` at that point.
+
 ## Visitor analytics
 
 Google Analytics 4 is configured in `_quarto.yml` with measurement ID
