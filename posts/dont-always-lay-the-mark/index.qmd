@@ -1,8 +1,8 @@
 ---
-title: "Modes"
+title: "Modes and optimal sail changes"
 description: "Overlapping sail polars, straight bridges, and why combining two modes can beat sailing directly to the mark."
-date: 2026-10-28
-draft: true
+date: 2026-10-29
+draft: false
 ---
 
 [← All posts](../../index.qmd)
@@ -41,3 +41,6 @@ In this example we want to go in a direction that lies exactly on the crossover 
 To illustrate the previous case I want to show how this looks as a track. This is shown in Figure 4. Both boats start at A and sail to B. The direct boat holds the gennaker on the crossover heading. The other boat is sailing in modes.
 
 ![Combining modes reaches B in 6:00 instead of 6:50, saving 50 seconds. Track colour shows the straight-line distance to mark B, with the same colour at the same distance on either route. [Open full size](sail-change-crossover-leg.svg).](sail-change-crossover-leg.svg){fig-alt="A single leg from A to B at the jib-gennaker crossover angle. The direct boat uses the gennaker throughout, at the same speed the jib would give. The modes boat sails below the direct course under gennaker, then heads up under jib to reach B sooner. Track colours show distance to B in nautical miles. An inset compares both positions when the modes boat finishes, with red identifying the direct boat and blue the modes boat."}
+
+##conclusion
+So there you have it. If you can identify the *modes* for your boat and sail between them, there is a lot to gain over just sailing with one sail until it becomes untennable and then changing.
