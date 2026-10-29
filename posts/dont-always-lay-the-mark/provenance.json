@@ -2,9 +2,9 @@
   "source_section": "Sail changes and sailing modes",
   "source_files": {
     "../../random simuleringer/sailing_tactics_note.tex": "7eade678cb5dc13f7a5a4d0663c1c11bf4f6a335af77e3c640919d7e0d1fa0e4",
-    "../../random simuleringer/scripts/sail_change.py": "8a20c5e063d22afb6005e29073c65d5e37ec425a4dd2c2ad9c9b2f634a0d1062",
+    "../../random simuleringer/scripts/sail_change.py": "783d05743e5e3a84a2263249e09c69ffcf850e59b7f312be50f20c13fd49f383",
     "../../random simuleringer/plots/sail_change_between_sails.pdf": "c8a88cbe38b968c49ac4876b6225740af7b41f51ef22ad9cec308aed0a3ffc36",
-    "../../random simuleringer/plots/sail_change_crossover_leg.pdf": "8cdefc6c4752b22c57952e0d7b8baaec66af00318a346b21cd9c12747fcb92f4",
+    "../../random simuleringer/plots/sail_change_crossover_leg.pdf": "64c088bdc0082ae28952ca8ca3dbf7daa69318ad31543682025665df2d983f66",
     "../../random simuleringer/plots/sail_change_crossover_numbers.json": "439e8208fd15fa7dfb913349d2a52786475d3d552c8fdf515f33861177e42258",
     "../../random simuleringer/plots/sail_change_crossover_intro.pdf": "0da4d4c3b64af3797d1c5b150742fd64cb3edf61fdc639e1bb4af594065359b6"
   },
@@ -20,9 +20,8 @@
       "source": "../../random simuleringer/plots/sail_change_crossover_leg.pdf",
       "conversion": "pdftocairo -svg sail_change_crossover_leg.pdf sail-change-crossover-leg.svg",
       "transparent_background": true,
-      "generator": "See README.md#sail-mode-figures; crossover_leg uses gennaker as the direct baseline.",
-      "sha256": "d6574e92a46e21eca23591939843441dd4c325002cabeeb23b0812e782eff4a9",
-      "postprocessing": "python scripts/recolor_leg_tracks.py; main tracks coloured by Euclidean distance to B; inset colours identify boats."
+      "generator": "sail_change.draw_course(crossover_leg(sails)), with savefig.transparent enabled; main tracks use straight-line distance to B in nautical miles; inset colours identify boats.",
+      "sha256": "8757ef37e934581a08a91de84dd46e8edd22ee6d00fdfd405aac473737c2613a"
     },
     "sail-change-crossover-intro.svg": {
       "source": "../../random simuleringer/plots/sail_change_crossover_intro.pdf",
