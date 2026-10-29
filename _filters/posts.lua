@@ -72,7 +72,10 @@ local function article(post)
     pandoc.Para({pandoc.Span(date_label(post.date), pandoc.Attr("", {"post-meta"}))})
   })
   blocks:extend(body.blocks)
-  return pandoc.Div(blocks, pandoc.Attr("latest-post", {"latest-post"},
+  -- Render each article separately so Pandoc's endnotes stay inside it when
+  -- owner view replaces the published article with a draft on the home page.
+  local html = pandoc.write(pandoc.Pandoc(blocks), "html", {html_math_method = "mathml"})
+  return pandoc.Div({pandoc.RawBlock("html", html)}, pandoc.Attr("latest-post", {"latest-post"},
     {["data-comments-post"] = permalink(post)}))
 end
 
