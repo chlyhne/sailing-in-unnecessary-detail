@@ -209,7 +209,7 @@ the exported SVGs, so rendering requires no simulation environment.
 The generator colours both main tracks in the blog's single-leg figure by
 the difference between the boats' straight-line distances to B at the same
 time, in hull lengths. Blue is closer to B, red is farther away, and black
-means equal distances.
+means equal distances. Colours stay fixed after the first boat finishes.
 The inset keeps its red/blue boat identifiers. The note's two-leg figure
 continues to show the lead over the other boat in hull lengths.
 
