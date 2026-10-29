@@ -29,6 +29,12 @@
       "conversion": "pdftocairo -svg sail_change_crossover_intro.pdf sail-change-crossover-intro.svg",
       "transparent_background": true,
       "sha256": "5e146bf11495892ce6a876dccef12c1bbbde2b2a935512b9dc7dabf822c7b4b3"
+    },
+    "sail-change-mode-vectors.svg": {
+      "source": "sail-change-crossover-intro.svg",
+      "generator": "python scripts/export_mode_vectors.py; samples the existing exported polar paths, using equal time at 50 and 100 degrees TWA.",
+      "transparent_background": true,
+      "sha256": "db70ddf78d6892f42d031766d2da6b23735ddbc14f668d59722d681d2b82e89d"
     }
   },
   "adaptation": "The blog uses a separate one-leg crossover example from the same sail polars and plotting code. The note retains its original default plots and numerical example. All web figures have transparent backgrounds. The introductory polar shows only the two sails and their crossover before introducing the bridge.",

@@ -205,3 +205,8 @@ pdftocairo -svg '../../random simuleringer/plots/sail_change_crossover_leg.pdf' 
 
 The post's `provenance.json` records source and figure hashes. The blog ships
 the exported SVGs, so rendering requires no simulation environment.
+
+Regenerate the time-weighted vector diagram with
+`python scripts/export_mode_vectors.py` (requires NumPy and Matplotlib).
+It reads the curves from `sail-change-crossover-intro.svg` and writes
+`sail-change-mode-vectors.svg`, using equal time at two points on the jib polar.
