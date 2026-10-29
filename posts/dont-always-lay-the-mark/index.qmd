@@ -30,35 +30,14 @@ Changing $f$ moves P along that line. These are fractions of **time**, not dista
 
 ![Half the time at A (50° TWA) and half at B (100° TWA) gives an average velocity at P on the line joining them. P gives 6.66 knots at 77.87° TWA; sailing directly on the jib gives 7.42 knots in that direction. [Open full size](sail-change-mode-vectors.svg).](sail-change-mode-vectors.svg){.compact-figure fig-alt="A close-up of the blue jib polar around A, B, and the vector parallelogram. A purple arrow from the origin shows half the velocity at A on the jib polar. An orange arrow from the origin shows half the velocity at B. Dashed parallel copies complete a parallelogram, whose green diagonal ends at P halfway along the red chord AB. P lies inside the jib polar. A dashed green ray through P reaches the jib curve farther out, showing the higher speed available by sailing directly."}
 
-But here the straight line between the two points is wholly inside the polar, and so it is slower. But any time you can draw a line between two points on the polar that lies outside the polar, it will be faster to switch modes between the two end points of the line. This can only happen if there are dents in the polar. These dents often sit between two sail choices. The optimal modes are endpoints that make the line between them as far outside the normal polar as possible, and that happens if the line is tangential to the polar at both points. This is shown in Figure 3.
+But here the straight line between the two points is wholly inside the polar, and so it is slower. But any time you can draw a line between two points on the polar that lies outside the polar, it will be faster to switch modes between the two end points of the line. This can only happen if there are dents in the polar. These dents often sit between two sail choices. The optimal modes are endpoints that make the line between them as far outside the normal polar as possible, and that happens if the line is tangential to the polar at both points. These two points are the *optimal modes* This is shown in Figure 3.
 
 ![The desired direction passes through the jib-gennaker crossover. The red bridge joins modes G and J, giving 1.15 knots more average speed toward the mark. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. The mark-direction ray passes through their crossover at 115.49 degrees TWA and 8.28 knots. A red bridge joins J at 94.54 degrees to G at 122 degrees. P A lies on the bridge at 9.44 knots, a 13.90 percent gain."}
 
-Sailing the modes is much faster, and the modes are each much more comfortable for each sail. So you will get away from forcing the gennaker too high or feeling under powered under jib. 
+In this example we want to go in a direction that lies exactly on the crossover between the two sails, where both sails give the same speed. For these polars, this is the worst direct-sailing case because the dent in the polar is so deep here. Sailing between the modes cuts the sailing time by a whopping **about 12%**, despite sailing a little farther. The modes are each much more comfortable under each sail. So you will get away from forcing the gennaker too high or feeling under powered under jib.
 
-Together with the exposed parts of the original curves, the outer bridges form a virtual polar with no dents. Where the boundary follows a sail curve, sail directly; where there are dents sail the modes. If you have the polar available for your boat you can even read the TWA straight off the polar.
-
-## The mode points give the laylines
-
-For the red bridge, the two modes are:
-
-| Mode | TWA | Boat speed |
-|---|---:|---:|
-| G: gennaker | 122.00° | 10.33 kn |
-| J: jib | 94.54° | 7.95 kn |
-
-Draw the jib layline backwards from the mark, at the J heading plus 180°. Sail mode G until reaching that line, then change sail and head directly to the mark in mode J. In steady wind, reversing the order gives the same total time.
-
-Changing the mark direction within this sector changes how long each mode is used, while the two endpoint modes stay fixed. The mark ray meets the bridge at $P_{\mathrm A}$. The distance from J to $P_{\mathrm A}$, divided by the full length JG, gives the fraction of time spent under gennaker.
-
-Here the mark is at the crossover, **115.49° TWA**, where both sails give **8.28 knots** directly toward it. For these polars, this is the worst direct-sailing case within the bridge sector. Switching sails while staying on that heading gives no improvement. We use the gennaker for the direct boat.
-
-Sailing between the modes cuts the sailing time by **about 12%**, despite sailing a little farther.
 
 ## Two boats from A to B
+To illustrate the previous case I want to show how this looks as a track. This is shown in Figure 4. Both boats start at A and sail to B. The direct boat holds the gennaker on the crossover heading. The other boat is sailing in modes.
 
-Both boats start at A and sail to B. The direct boat holds the gennaker on the crossover heading. The modes boat sails G first, then changes to J at the backward layline from B.
-
-![Combining modes reaches B in 6:00 instead of 6:50, saving 50 seconds. Colour shows each boat's lead at equal elapsed times, in Seascape 27 lengths. [Open full size](sail-change-crossover-leg.svg).](sail-change-crossover-leg.svg){fig-alt="A single leg from A to B at the jib-gennaker crossover angle. The direct boat uses the gennaker throughout, at the same speed the jib would give. The modes boat sails below the direct course under gennaker, then heads up under jib to reach B sooner. An inset compares both positions when the modes boat finishes."}
-
-The construction assumes constant wind, settled speed, and no losses when changing mode. A real sail change has to cost less than the time saved. But being able to lay the mark, even with the faster sail for that heading, does not by itself make the direct course quickest.
+![Combining modes reaches B in 6:00 instead of 6:50, saving 50 seconds. Track colour shows the straight-line distance to mark B, with the same colour at the same distance on either route. [Open full size](sail-change-crossover-leg.svg).](sail-change-crossover-leg.svg){fig-alt="A single leg from A to B at the jib-gennaker crossover angle. The direct boat uses the gennaker throughout, at the same speed the jib would give. The modes boat sails below the direct course under gennaker, then heads up under jib to reach B sooner. Track colours show distance to B in nautical miles. An inset compares both positions when the modes boat finishes, with red identifying the direct boat and blue the modes boat."}

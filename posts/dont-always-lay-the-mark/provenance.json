@@ -21,7 +21,8 @@
       "conversion": "pdftocairo -svg sail_change_crossover_leg.pdf sail-change-crossover-leg.svg",
       "transparent_background": true,
       "generator": "See README.md#sail-mode-figures; crossover_leg uses gennaker as the direct baseline.",
-      "sha256": "870e081c18f2c2cd14961013b86a6aac6cdfd145e4daf54dd7e3319989c8f073"
+      "sha256": "d6574e92a46e21eca23591939843441dd4c325002cabeeb23b0812e782eff4a9",
+      "postprocessing": "python scripts/recolor_leg_tracks.py; main tracks coloured by Euclidean distance to B; inset colours identify boats."
     },
     "sail-change-crossover-intro.svg": {
       "source": "../../random simuleringer/plots/sail_change_crossover_intro.pdf",

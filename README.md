@@ -206,6 +206,11 @@ pdftocairo -svg '../../random simuleringer/plots/sail_change_crossover_leg.pdf' 
 The post's `provenance.json` records source and figure hashes. The blog ships
 the exported SVGs, so rendering requires no simulation environment.
 
+After exporting the leg figure, run `python scripts/recolor_leg_tracks.py`
+to colour both main tracks by straight-line distance to mark B and update
+the shared colour scale. This requires NumPy and Matplotlib. The inset keeps
+its red/blue boat identifiers.
+
 Regenerate the time-weighted vector diagram with
 `python scripts/export_mode_vectors.py` (requires NumPy and Matplotlib).
 It reads the curves from `sail-change-crossover-intro.svg` and writes
