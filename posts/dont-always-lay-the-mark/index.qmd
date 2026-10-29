@@ -1,5 +1,5 @@
 ---
-title: "Don't always lay the mark"
+title: "Modes"
 description: "Overlapping sail polars, straight bridges, and why combining two modes can beat sailing directly to the mark."
 date: 2026-10-28
 draft: true
@@ -17,21 +17,21 @@ But there is a conspicuous dent in the combined polar near that crossover. We co
 
 The idea is to find the two sail-and-TWA combinations that make this route as fast as possible. We call those optimal combinations *modes*. Sailing part of the leg in one and the rest in the other is sailing *between modes*.
 
-We still need to show that combining two such choices can beat sailing directly, and find which choices are optimal. The polar diagram gives us a way to do both, even in steady wind.
+We still need to show that combining two such choices can beat sailing directly, and find which choices are optimal. The polar diagram gives us a way to do that.
 
 ## Straight lines give an equivalent polar
 
 Each point on a sail's polar describes a possible heading and boat speed. Pick two points and spend part of the time sailing at each. Distances add, so the horizontal and vertical speeds on the polar diagram average in the same proportions. Both coordinates vary linearly with the time fraction, so the possible averages trace the straight segment joining the points. Half the time in each gives its midpoint; other time splits give the rest of the segment.
 
-To find the fastest combination, choose the outermost bridge across the dent that touches both curves while keeping all available points on the origin side. At smooth contact points, the bridge is tangent to each curve. **Its contact points identify the modes**: the optimal sail-and-TWA combinations to use on the two parts of the leg.
+To find the optimal combination, choose the outermost bridge across the dent that touches both curves while keeping all available points on the origin side. At smooth contact points, the bridge is tangent to each curve. **Its contact points identify the modes**: the optimal sail-and-TWA combinations to use on the two parts of the leg. This is shown in Figure 2.
 
 ![The desired direction passes through the jib-gennaker crossover. The red bridge joins modes G and J, giving 1.15 knots more average speed toward the mark. [Open full size](sail-change-between-sails.svg).](sail-change-between-sails.svg){.compact-figure fig-alt="Overlapping blue jib and brown gennaker polars. The mark-direction ray passes through their crossover at 115.49 degrees TWA and 8.28 knots. A red bridge joins J at 94.54 degrees to G at 122 degrees. P A lies on the bridge at 9.44 knots, a 13.90 percent gain."}
 
-The bridge lies outside the sail polars between G and J. Its radius in the mark direction therefore gives a greater average speed toward the mark than either sail gives when sailing directly there. This is why these two modes are worth combining. No wind shift is needed. It is the same idea as tacking or gybing, now between reaching modes.
+Sailing the modes is much faster, and the modes are each much more comfortable for each sail. So you will get away from forcing the gennaker too high or feeling under powered under jib. 
 
-Together with the exposed parts of the original curves, the outer bridges form a convex boundary, the **convex hull**. This is an equivalent polar for routes that can combine modes. Where the boundary follows a sail curve, sail directly; where it follows a bridge, combine its endpoint modes.
+Together with the exposed parts of the original curves, the outer bridges form a virtual polar with no dents. Where the boundary follows a sail curve, sail directly; where there are dents sail the modes. If you have the polar available for your boat you can even read the TWA straight off the polar.
 
-## The bridge points give the laylines
+## The mode points give the laylines
 
 For the red bridge, the two modes are:
 
@@ -39,8 +39,6 @@ For the red bridge, the two modes are:
 |---|---:|---:|
 | G: gennaker | 122.00° | 10.33 kn |
 | J: jib | 94.54° | 7.95 kn |
-
-These are the layline angles for the two modes. They generally differ from the sail-polar crossover, which only compares the two sails at the same heading.
 
 Draw the jib layline backwards from the mark, at the J heading plus 180°. Sail mode G until reaching that line, then change sail and head directly to the mark in mode J. In steady wind, reversing the order gives the same total time.
 
