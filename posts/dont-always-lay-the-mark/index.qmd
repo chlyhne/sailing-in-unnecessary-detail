@@ -20,7 +20,7 @@ The idea is to find the two sail-and-TWA combinations that make this route as fa
 ## Straight lines give an equivalent polar
 First of all, if you pick any two points on a polar and sail first at one point and then at another with some fraction of time between them, then you will sail on an effective polar that is a straight line between them. This is shown in Figure 2.
 
-For example, spend half the time at A and half at B, both on the jib polar. The first arrow is half the velocity at A; from its tip, add half the velocity at B. The resulting point P is the average velocity, exactly halfway along the straight line from A to B. More generally, spending a fraction $f$ of the time at A gives
+For example, spend half the time at A and half at B, both on the jib polar. Draw half the velocity at A and half the velocity at B from the origin, then complete the parallelogram with parallel copies of those arrows. Its diagonal gives the average velocity at P, exactly halfway along the straight line from A to B. More generally, spending a fraction $f$ of the time at A gives
 
 $$
 \mathbf{v}_{\mathrm{avg}} = f\mathbf{v}_{\mathrm A} + (1-f)\mathbf{v}_{\mathrm B}.
@@ -28,7 +28,7 @@ $$
 
 Changing $f$ moves P along that line. These are fractions of **time**, not distance.
 
-![Half the time at A (50? TWA) and half at B (100? TWA) gives an average velocity at P on the line joining them. P gives 6.66 knots at 77.87? TWA; sailing directly on the jib gives 7.42 knots in that direction. [Open full size](sail-change-mode-vectors.svg).](sail-change-mode-vectors.svg){.compact-figure fig-alt="A polar diagram with blue jib and brown gennaker curves. A purple arrow from the origin shows half the velocity at A on the jib polar. An orange arrow adds half the velocity at B, head to tail, ending at P halfway along the red chord AB. P lies inside the jib polar. A dashed green ray through P reaches the jib curve farther out, showing the higher speed available by sailing directly."}
+![Half the time at A (50° TWA) and half at B (100° TWA) gives an average velocity at P on the line joining them. P gives 6.66 knots at 77.87° TWA; sailing directly on the jib gives 7.42 knots in that direction. [Open full size](sail-change-mode-vectors.svg).](sail-change-mode-vectors.svg){.compact-figure fig-alt="A close-up of the blue jib polar around A, B, and the vector parallelogram. A purple arrow from the origin shows half the velocity at A on the jib polar. An orange arrow from the origin shows half the velocity at B. Dashed parallel copies complete a parallelogram, whose green diagonal ends at P halfway along the red chord AB. P lies inside the jib polar. A dashed green ray through P reaches the jib curve farther out, showing the higher speed available by sailing directly."}
 
 But here the straight line between the two points is wholly inside the polar, and so it is slower. But any time you can draw a line between two points on the polar that lies outside the polar, it will be faster to switch modes between the two end points of the line. This can only happen if there are dents in the polar. These dents often sit between two sail choices. The optimal modes are endpoints that make the line between them as far outside the normal polar as possible, and that happens if the line is tangential to the polar at both points. This is shown in Figure 3.
 
