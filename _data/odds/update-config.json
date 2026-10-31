@@ -1,0 +1,20 @@
+{
+  "year": 2026,
+  "event_url": "https://www.manage2sail.com/da-dk/event/Onsdagsbanen2026#!/",
+  "timezone": "Europe/Copenhagen",
+  "weekday": 2,
+  "start_hour": 19,
+  "end_hour": 23,
+  "minimum_interval_minutes": 25,
+  "stable_checks": 2,
+  "groups": {
+    "Stor Bane": [
+      "Stor bane 1",
+      "Stor bane 2"
+    ],
+    "Lille Bane": [
+      "Lille bane 1",
+      "Lille bane 2"
+    ]
+  }
+}

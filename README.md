@@ -217,3 +217,131 @@ Regenerate the time-weighted vector diagram with
 `python scripts/export_mode_vectors.py` (requires NumPy and Matplotlib).
 It reads the curves from `sail-change-crossover-intro.svg` and writes
 `sail-change-mode-vectors.svg`, using equal time at two points on the jib polar.
+
+## Onsdagsbanen odds dashboard
+
+The dashboard is available directly at `odds.html`, with its navigation link
+hidden until the season starts again. Choose your boat to compare with competitors
+on handicap-corrected results. The course is inferred and the choice remembered.
+Each matchup shows two sportsbook-style decimal prices: you to win and the
+opponent to win (1 / probability), with the favourite subtly highlighted,
+ordered closest to 50/50 first. Click an opponent for history, the actual
+shared-finish record and an approximate
+90% interval. Earlier races and model explanations are collapsed by default.
+
+**The probability model is separate from redress.** It uses only 2025 and 2026
+finishing orders from the same source CSV. A seasonal Plackett–Luce ranking model
+is fitted after each race, with a joint Laplace posterior and cross-boat covariance.
+Prior SD was selected using 2025 only; 2026 provides a prospective, later-season
+evaluation. The 2025 curve is retrospective with respect to hyperparameter tuning.
+DNF and attendance are not modeled; three finishes per boat are required.
+
+See [method, validation and limitations](odds/validation.md). In particular,
+observed validation improvement is not proof of precise probability calibration.
+The redress implementation and its fitted states are unchanged.
+
+The tracked `_data/odds/results.csv` supplies the input. To regenerate the odds
+from that snapshot, from this website directory:
+
+```bash
+OPENBLAS_NUM_THREADS=1 ../Onsdagsbanen/.venv/bin/python scripts/export_odds.py
+../Onsdagsbanen/.venv/bin/python -m unittest discover -s test -p 'test_ranking_odds.py'
+node --test test/*.test.cjs
+quarto render
+```
+
+`export_odds.py` accepts `--source`, `--config` and `--output`. NumPy and SciPy
+are required only to regenerate data; the deployed site is static, with no
+Python or backend dependency. The exporter hard-filters to 2025–2026, validates
+finish times and records the source SHA256. Model tuning can be reproduced with
+`Onsdagsbanen/scripts/evaluate_ranking_odds.py`; its output configuration is
+copied to `odds/model-config.json` only when deliberately changing settings.
+
+For browser QA, serve `_site/` on `127.0.0.1:8765`, then run:
+
+```bash
+PLAYWRIGHT_MODULE=/path/to/playwright node test/odds-browser.cjs
+```
+
+This checks the simple skipper flow, course inference, remembered boat,
+expandable history/evidence, season/date selection, shared state, CSV download
+and mobile overflow. Screenshots go to `/tmp/odds-simple-desktop.png` and
+`/tmp/odds-simple-mobile.png`. Playwright is not a build dependency.
+
+## Automatic Wednesday odds updates
+
+The existing `Publish blog` workflow checks Manage2Sail at **19:17, 19:47,
+20:17, 20:47, 21:17, 21:47, 22:17 and 22:47 on Wednesdays**, Copenhagen time.
+The schedule is timezone-aware, including daylight saving. A second local-time
+guard runs before any request; a 25-minute cooldown prevents closely queued
+runs from repeatedly fetching. GitHub schedules are best-effort and may be late.
+
+Visitors only download the site's static JSON. They never contact Manage2Sail.
+Each check fetches the four configured class-result endpoints. Class IDs are
+discovered once per week and cached. Conditional GET uses ETag/Last-Modified
+when offered; the tested API currently supplies neither, so an unchanged check
+still needs four JSON downloads. It does not fetch 2025 or run the redress
+pipeline, generate result PDFs, or send emails.
+
+Only normalized race data are compared: website metadata changes do not cause
+a rebuild. New or corrected results must match across **two consecutive checks**
+before a scheduled update. This gives at least one checking interval for the
+sheet to settle; it is not a guarantee of an official final result. Missing
+class data or missing previously published races stops the update and leaves
+the existing site intact. Early absent rows for a later entrant are treated as
+DNC, matching the original history collector. Stable Manage2Sail entry IDs keep
+the existing canonical boat identities across name spelling changes.
+
+On a confirmed change, the workflow installs the pinned model dependencies,
+rebuilds the odds, runs tests, commits only the input snapshot, identity map and
+output JSON, then deploys in the **same workflow**. This is intentional: commits
+made with `GITHUB_TOKEN` do not trigger another push workflow. Unchanged results
+skip model fitting, commits and deployment. Failed fits or tests never replace
+the published snapshot. No new token, secret, server or paid scheduler is needed.
+
+Files:
+
+- `_data/odds/results.csv`: compact 2025–2026 input snapshot, initially seeded
+  from the local redress history. The 2025 rows stay archived during 2026 polling.
+- `_data/odds/identities.json`: stable entry IDs mapped to existing model names.
+- `_data/odds/update-config.json`: event, four classes and polling window.
+- `.cache/odds/`: ignored request cache and candidate data, persisted using
+  GitHub Actions cache; losing the cache safely restarts the settling period.
+- `scripts/refresh_odds.py`: network/checking logic, with no scientific dependencies.
+- `scripts/odds-requirements.txt`: model dependency versions used for regeneration.
+
+The current configuration is deliberately **2026 only**, respecting the
+2025–2026 model scope. Automatic checks do not contact the old event in 2027.
+Adding a new season requires an explicit model/data-scope update, not just a
+silently invented event URL.
+
+Nothing runs until these changes reach the repository's default branch.
+After publishing, use **Actions → Publish blog → Run workflow → refresh_odds**
+for an immediate manual check outside Wednesday evening. Manual mode bypasses
+the time window, cooldown and settling delay, but keeps completeness checks.
+Ordinary manual runs without that box simply publish the site as before.
+
+Local commands, from the website directory:
+
+```bash
+# No network outside the configured window/year:
+python3 scripts/refresh_odds.py
+
+# Explicit immediate check; writes candidates only, does not publish:
+python3 scripts/refresh_odds.py --force
+```
+
+For a locally checked candidate reported as changed:
+
+```bash
+OPENBLAS_NUM_THREADS=1 ../Onsdagsbanen/.venv/bin/python scripts/export_odds.py \
+  --source .cache/odds/candidate.csv --output .cache/odds/data.json
+```
+
+The scheduler will miss corrections published outside its Wednesday window
+until the next Wednesday; use the manual override when needed. GitHub may disable
+public-repository schedules after 60 days of inactivity; re-enable the workflow
+at season start if necessary.
+
+References: [GitHub scheduling and timezones](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onschedule),
+[workflow token trigger behavior](https://docs.github.com/en/actions/concepts/security/github_token#when-github_token-triggers-workflow-runs).

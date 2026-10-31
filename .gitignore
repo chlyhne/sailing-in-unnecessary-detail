@@ -11,3 +11,5 @@ node_modules/
 .dev.vars
 .env
 comments-api/backups/
+
+.cache/

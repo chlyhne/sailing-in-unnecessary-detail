@@ -1,0 +1,55 @@
+---
+title: "You and the fleet"
+pagetitle: "Onsdagsbanen odds · Sailing in Unnecessary Detail"
+body-classes: odds-page
+format:
+  html:
+    css: [styles.css, odds/dashboard.css]
+---
+
+```{=html}
+<p class="odds-intro">Choose your boat to see your chances against the other skippers.</p>
+<div id="odds-loading" role="status">Loading the fleet…</div>
+<noscript>This dashboard needs JavaScript. <a href="odds/data.json">Download the model data</a>.</noscript>
+<div id="odds-app" hidden>
+  <div class="odds-pick">
+    <label for="odds-boat">Your boat</label>
+    <select id="odds-boat"><option value="">Choose your boat / skipper</option></select>
+    <p class="odds-caption">Listed by skipper. Your choice is remembered on this device.</p>
+  </div>
+  <p id="odds-welcome" class="odds-welcome">Find your boat above. We’ll show the competitors on your course.</p>
+  <div id="odds-results" hidden>
+    <section aria-labelledby="odds-fleet-title">
+      <div class="odds-heading"><h2 id="odds-fleet-title">Your matchups</h2><p id="odds-context" aria-live="polite"></p></div>
+      <p class="odds-explanation">Head-to-head winner <strong>on corrected time</strong>, if you both finish. Decimal odds: <strong>the lower number is the favourite</strong>. A price of 2.00 means an even chance.</p>
+      <p class="odds-caption">Closest matchups first · tap a matchup for history</p>
+      <div class="odds-list-heading"><span>Opponent</span><span>You win</span><span>They win</span><span aria-hidden="true"></span></div>
+      <div id="odds-competitors"></div>
+      <p class="odds-caption">Model estimates, not guarantees. DNF risk is not included. <a href="#odds-method" id="odds-explain">How are these calculated?</a></p>
+    </section>
+    <details id="odds-settings" class="odds-disclosure">
+      <summary>Earlier races &amp; settings</summary>
+      <div class="odds-settings-grid">
+        <label>Season<select id="odds-season"></select></label>
+      </div>
+      <p class="odds-caption">Only the 2025 and 2026 fleets are included. Select an earlier race to see how the estimate developed.</p>
+      <div class="odds-snapshot"><strong id="odds-date"></strong><button id="odds-latest" type="button">Latest race</button><input id="odds-date-slider" type="range" min="0" step="1" aria-label="Race in season"></div>
+      <p id="odds-fleet-chance" class="odds-caption"></p>
+      <div class="odds-tools"><button id="odds-share" type="button">Copy link</button><button id="odds-download" type="button">Download CSV</button><span id="odds-action-status" role="status"></span></div>
+    </details>
+    <details id="odds-method" class="odds-disclosure">
+      <summary>How these chances are calculated</summary>
+      <p>These chances come from a model of <strong>finishing order</strong>, using handicap-corrected results from 2025 and 2026 only. It learns which skippers consistently finish ahead, rather than converting redress time uncertainty into win odds.</p>
+      <p>Each race contributes one ranking of its finishers to a Plackett–Luce model. Equal recorded times are treated as an unresolved order, not an arbitrary winner. Each season starts afresh; the curve updates after each race using that season’s results so far. Three recorded finishes are required for each boat before showing a percentage.</p>
+      <p>Fair decimal odds are 1 divided by the estimated probability, with no bookmaker margin: 2.00 means 50%, and 4.00 means 25%. These are model-derived odds, not an offer to place a bet.</p>
+      <p><strong>Uncertainty is included.</strong> Probabilities average over an approximate joint posterior for the skippers’ strengths, including their correlations. The interval in an expanded matchup shows uncertainty in the estimated win chance; it is not a finishing-time range.</p>
+      <p><strong>Checked against later races.</strong> The regularisation was selected using earlier-race predictions within 2025. The separate 2026 evaluation predicts each race before adding its result. The 2025 curve is retrospective with respect to that tuning. No 2023 or 2024 results are used.</p>
+      <p><strong>Conditional on both boats finishing.</strong> DNF, DNS and DNC are excluded from the ranking likelihood. Time limits, attendance and retirement are not predicted. The model assumes relative strength is reasonably stable within a season; conditions, course details and crew changes can still change an actual matchup.</p>
+      <p>The whole-fleet chance assumes all displayed boats with at least three recorded finishes race and finish. These remain model estimates, not guarantees. <a href="odds/validation.md">Read the model evaluation</a> or the <a href="https://hturner.github.io/PlackettLuce/articles/Overview.html">ranking-model background</a>.</p>
+      <p id="odds-provenance" class="odds-caption"></p>
+    </details>
+  </div>
+</div>
+<script src="odds/math.js" defer></script>
+<script src="odds/dashboard.js" defer></script>
+```
